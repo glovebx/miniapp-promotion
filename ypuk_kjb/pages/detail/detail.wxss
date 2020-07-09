@@ -1,0 +1,462 @@
+@import "../../resource/wxParse/wxParse.wxss";
+
+.SwiperLayout {
+    position: relative;
+}
+
+.swiper {
+    height: 190px;
+}
+
+.activityInfo {
+    background: #fff;
+    padding: 20rpx 0 40rpx 30rpx;
+}
+
+/* .activityInfo .activityTitle {
+    font-size: 15px;
+    width: 530rpx;
+    display: inline-block;
+    vertical-align: middle;
+    border-right: 1px solid #eee;
+    padding-right: 30rpx;
+} */
+
+.activityInfo .LeftInfo {
+    font-size: 15px;
+    width: 530rpx;
+    display: inline-block;
+    vertical-align: middle;
+    border-right: 1px solid #eee;
+    padding-right: 30rpx;
+}
+
+.activityInfo .LeftInfo .activityTitle {
+    font-size: 15px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    /* border-right: 1px solid #eee; */
+    /* padding-right: 30rpx; */
+}
+
+.activityInfo .LeftInfo .activityPromise {
+    font-size: 10px;
+    color: #999;
+    width: 100%;
+    margin-left: -2px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.activityInfo .LeftInfo .activityPromise text {
+  padding: 0rpx 6rpx 0rpx 6rpx;
+}
+
+.goodContent {
+    background: #fff;
+    padding: 20rpx 40rpx;
+    margin-bottom: 20rpx;
+}
+
+.goodContent .ContentTitle {
+    margin-top: 10rpx;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20rpx;
+}
+
+.goodContent .goodFreight {
+}
+
+.goodContent .goodDesc {
+    font-size: 14px;
+    margin: 20rpx 0;
+}
+
+.topStock {
+    position: absolute;
+    z-index: 999;
+    right: 20rpx;
+    color: #fff;
+    top: 20rpx;
+    font-size: 14px;
+    height: 64rpx;
+}
+
+.topStockBg {
+    background: #000;
+    opacity: 0.5;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 64rpx;
+    position: absolute;
+}
+
+.topStockText {
+    padding: 10rpx 20rpx;
+}
+
+.bargainData {
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.bargainUser {
+    padding-top: 30rpx;
+}
+
+.dataLayout {
+    border-bottom: 1px dashed #eee;
+}
+
+.dataLayout .dataItem {
+    float: left;
+    width: 33%;
+    text-align: center;
+    padding: 20rpx 0;
+    font-size: 14px;
+}
+
+.dataItem:nth-child(2) {
+    border-left: 1px dashed #eee;
+    border-right: 1px dashed #eee;
+}
+
+.dataItem .dataNum {
+    font-size: 16px;
+    color: #ee4f4f;
+}
+
+.dataItem text {
+    padding-left: 4rpx;
+    padding-right: 4rpx;
+}
+
+.businessInfo {
+    background: #fff;
+    padding: 30rpx;
+    font-size: 14px;
+    margin-bottom: 20rpx;
+}
+
+.businessTitle {
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 20rpx;
+}
+
+.businessLeft {
+    padding-top: 20rpx;
+    float: left;
+    width: 520rpx;
+    overflow: hidden;
+}
+
+.businessAdr {
+    color: #787878;
+    font-size: 13px;
+    margin-top: 6rpx;
+}
+
+.businessRight {
+    float: right;
+    margin: 40rpx 0 0;
+    border-left: 1px solid #eee;
+    padding: 10rpx 40rpx 0;
+}
+
+.businessTel {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.RecommendLayout {
+    background: #fff;
+    margin-bottom: 94rpx;
+    padding-bottom: 100rpx;
+}
+
+.RecommendTitle {
+    font-size: 14px;
+    border-left: 4px solid #ee4f4f;
+    margin: 40rpx 20rpx 20rpx 20rpx;
+    padding-left: 20rpx;
+}
+
+.checkCity {
+    background: #ffefef;
+    color: #ee4f4f;
+    font-size: 12px;
+    padding: 20rpx;
+}
+
+.PriceBar {
+    background: #ee4f4f;
+    color: #fff;
+    font-size: 12px;
+}
+
+.LeftPrice {
+    float: left;
+    padding: 8rpx 30rpx;
+}
+
+.LowPrice {
+    font-size: 18px;
+    height: 46rpx;
+}
+
+.OldPrice {
+    text-decoration: line-through;
+}
+
+.YuanIcon {
+    font-size: 12px;
+}
+
+.RightTime {
+    float: right;
+    background: #f56a6a;
+    padding: 12rpx 20rpx;
+    text-align: center;
+}
+
+.TimeBox {
+    display: inline-block;
+    background: #fff;
+    color: #ee4f4f;
+    margin: 0 6rpx;
+    padding: 0 10rpx;
+    border-radius: 6rpx;
+    vertical-align: middle;
+}
+
+.OpbuyPrice {
+    float: left;
+    margin: 12rpx 0;
+    border-left: 1px dashed #fff;
+    padding: 0 26rpx;
+    max-width: 160rpx;
+}
+
+.OpbuyIcon {
+    color: #ffffff;
+    text-align: center;
+    font-size: 11px;
+    width: 80rpx;
+    margin: 0 auto;
+    height: 30rpx;
+}
+
+.OpbuyPriceText {
+    font-size: 18px;
+    height: 46rpx;
+}
+
+.RightStock {
+    width: 130rpx;
+    display: inline-block;
+    padding: 0 10rpx;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.StockNum {
+    font-size: 18px;
+    display: block;
+}
+
+.actionBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+    z-index: 100;
+    font-size: 16px;
+}
+
+.actionBar .commentText {
+    float: left;
+    margin-left: 10rpx;
+    color: #777;
+}
+
+.actionBar .addFav {
+    float: left;
+    margin: 40rpx 0 30rpx;
+    margin-left: 40rpx;
+    font-size: 14px;
+}
+
+.actionBar .addFav.long {
+    margin-left: 70rpx;
+}
+
+.actionBar .favIcon {
+    float: left;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.actionBar .favText {
+    float: left;
+    margin-left: 10rpx;
+    color: #777;
+}
+
+.actionBar .shareGood {
+    float: left;
+    margin: 40rpx 0 30rpx;
+    margin-left: 40rpx;
+}
+
+.actionBar .shareGood.long {
+    margin-left: 70rpx;
+}
+
+.actionBar .shareBtn,.actionBar .shareBtn::after {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    border-radius: none;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    border: none!important;
+    color: #333;
+}
+
+.actionBar .shareIcon {
+    float: left;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.actionBar .shareText {
+    float: left;
+    margin-left: 10rpx;
+    margin-top: 8rpx;
+    color: #777;
+    font-size: 14px;
+}
+
+.actionBar .addbargain,.actionBar .addoporder {
+    float: right;
+    width: 280rpx;
+    border: 0;
+    background: #ee4f4f;
+    color: #fff;
+    height: 114rpx;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 0;
+    line-height: 40rpx;
+}
+
+.actionBar .bar_normal {
+    background: #ddd;
+    line-height: 124rpx;
+}
+
+.actionBar .bar_remind {
+    padding: 0 52rpx;
+    font-size: 14px;
+    background: #3bd6a1;
+}
+
+.actionBar .bar_remind::after {
+    border: 0;
+}
+
+.actionBar .bar_reminded {
+    background: #3bd6a1;
+}
+
+.actionBar .twobtn {
+    width: 200rpx;
+    border-radius: 0;
+    font-size: 14px;
+}
+
+.actionBar .addoporder {
+    background: #fe8535;
+    font-size: 16px;
+}
+
+.actionBar .addoporder::after,.actionBar .addbargain::after {
+    border: 0;
+}
+
+.infoList {
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.infoItem {
+    padding: 30rpx 0;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+    margin: 0 20rpx;
+}
+
+.infoItem .infoTitle {
+    float: left;
+    color: #585858;
+}
+
+.infoItem .infoText {
+    float: right;
+    color: #ee4f4f;
+}
+
+.infoItem .infoTips {
+    float: left;
+    color: #585858;
+}
+
+.infoItem .infoIcon {
+    width: 40rpx;
+    height: 40rpx;
+    float: left;
+    margin-right: 10rpx;
+}
+
+.applyBar {
+    padding: 30rpx 0;
+    font-size: 13px;
+    background: #fff;
+    margin-bottom: 20rpx;
+    text-align: center;
+    color: #ee4f4f;
+}
+
+.applyIco {
+    width: 50rpx;
+    height: 50rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12rpx;
+}
+
+.applyText {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.btnPrice {
+    margin-top: 20rpx;
+}
+
+.btnText {
+    font-size: 13px;
+    margin-top: 4rpx;
+}

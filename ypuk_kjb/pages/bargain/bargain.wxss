@@ -1,0 +1,353 @@
+@import "../../resource/wxParse/wxParse.wxss";
+
+.SwiperLayout {
+    position: relative;
+}
+
+.swiper {
+    height: 400rpx;
+}
+
+.activityInfo {
+    background: #fff;
+    padding: 20rpx 30rpx;
+}
+
+.activityInfo .activityTitle {
+    font-size: 16px;
+}
+
+.activityInfo .Stock {
+    font-size: 14px;
+    margin-top: 10rpx;
+}
+
+.activityInfo .Stock .stockTips {
+    font-size: 12px;
+    color: #f60;
+}
+
+.posterImg {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.priceInfo {
+    background: #fff;
+    padding: 20rpx 0;
+}
+
+.priceInfo .PriceItem {
+    float: left;
+    font-size: 14px;
+    width: 33.1%;
+    text-align: center;
+}
+
+.priceInfo .PriceNum {
+    font-size: 20px;
+    color: #ee4f4f;
+}
+
+.priceInfo .PriceItem:nth-child(2) {
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.activityStatus {
+    background: #fff;
+}
+
+.activityStatus .statusText {
+    font-size: 13px;
+    padding: 20rpx 40rpx;
+    border-top: 1px solid #eee;
+}
+
+.activityStatus .statusText .CountDown {
+    color: #dbb243;
+}
+
+/* .activityStatus .addbargain {
+    float: right;
+    width: 240rpx;
+    border: 0;
+    background: #ae3228;
+    color: #fff;
+    border-radius: 10rpx;
+    height: 82rpx;
+    line-height: 82rpx;
+    text-align: center;
+    margin-top: 10rpx;
+    font-size: 16px;
+} */
+
+.bargainTips {
+    padding: 20rpx 30rpx;
+    font-size: 14px;
+    background: #ee4f4f;
+    margin-top: 20rpx;
+    color: #fff;
+}
+
+.actionBtn {
+    padding: 30rpx;
+}
+
+.actionBtn .addBargain {
+    float: right;
+    width: 190rpx;
+    height: 86rpx;
+    line-height: 47rpx;
+}
+
+.actionBtn .myBargain {
+    float: left;
+}
+
+.actionBtn .helpBargain {
+    float: right;
+    line-height: 47rpx;
+}
+
+.actionBtn .addBargain::after {
+    border: 0;
+}
+
+.actionBtn .BtnItem {
+    background: #dbb243;
+    color: #fff;
+    padding: 20rpx 30rpx;
+    width: 260rpx;
+    text-align: center;
+    border-radius: 10rpx;
+}
+
+.actionBtn .bargainTop {
+    width: 190rpx;
+    float: right;
+}
+
+.ProgressLayout {
+    background: #fff;
+    padding: 30rpx 30rpx 20rpx;
+    margin-top: 20rpx;
+}
+
+.ProgressTitle .UserAvatar {
+    width: 60rpx;
+    height: 60rpx;
+    float: left;
+    border-radius: 50%;
+}
+
+.ProgressTitle .nowProgress {
+    float: left;
+    font-size: 12px;
+    margin-left: 20rpx;
+    margin-top: 12rpx;
+}
+
+.Progress {
+    padding: 60rpx 30rpx 20rpx;
+    position: relative;
+    margin-top: 56rpx;
+}
+
+.Progress .lowprice,.Progress .oldprice,.Progress .nowprice {
+    font-size: 12px;
+    margin-top: 20rpx;
+    text-align: center;
+    color: #777;
+}
+
+.Progress .nowprice {
+    position: absolute;
+    left: 7%;
+    top: -20rpx;
+    color: #f60;
+    font-size: 12px;
+    text-align: center;
+}
+
+.Progress .oldprice {
+    float: left;
+    margin-left: -18rpx;
+}
+
+.Progress .lowprice {
+    float: right;
+    margin-right: -18rpx;
+}
+
+.Progress .progressBar {
+    width: 600rpx;
+    margin: 0 auto;
+    background: #bbb;
+    height: 15rpx;
+    border-radius: 10rpx;
+    position: relative;
+}
+
+.Progress .progressedBar {
+    position: absolute;
+    width: 1%;
+    background: #f60;
+    height: 15rpx;
+    border-radius: 10rpx;
+}
+
+.Progress .progressBar .endico,.Progress .progressBar .startico {
+    width: 26rpx;
+    height: 26rpx;
+    position: absolute;
+    right: -2rpx;
+    top: -6rpx;
+    background: #bbb;
+    border-radius: 50%;
+}
+
+.Progress .progressBar .startico {
+    left: -2rpx;
+    background: #f60;
+}
+
+.BargainModel {
+    background: #fff;
+    width: 400rpx;
+    height: 460rpx;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    border-radius: 16rpx;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.BargainModel .bargainIco {
+    width: 200rpx;
+    height: 200rpx;
+    color: #ca2428;
+    margin: 20rpx auto;
+    position: relative;
+}
+
+.BargainModel .bargainIcoImg {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.BargainModel .bargainIcoPrice {
+    width: 120rpx;
+    height: 100rpx;
+    transform: rotate(-16deg);
+    position: absolute;
+    top: 70rpx;
+    left: 44rpx;
+}
+
+.BargainModel .bargainPrice {
+    color: #ca2428;
+    font-size: 14px;
+}
+
+.BargainModel .bargainText {
+    font-size: 12px;
+    margin: 4rpx 0 12rpx;
+}
+
+.BargainModel .bargainBtn {
+    background: #f60;
+    margin: 0 20rpx;
+    color: #fff;
+    padding: 10rpx 0;
+    margin-top: 20rpx;
+    height: 80rpx;
+    line-height: 60rpx;
+    border-radius: 0;
+}
+
+.BargainModel .bargainBtn::after {
+    border: 0;
+}
+
+.BargainModelBg {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    opacity: 0.1;
+}
+
+.activityDesc {
+    background: #fff;
+    padding: 30rpx 40rpx 40rpx;
+}
+
+.activityDesc .descTitle {
+    margin-top: 10rpx;
+    font-size: 16px;
+}
+
+.activityDesc .descCon {
+    font-size: 14px;
+    margin: 20rpx 0;
+}
+
+.fixedLayout {
+    bottom: 200rpx;
+}
+
+.applyBar {
+    padding: 40rpx 0;
+    font-size: 13px;
+    background: #fff;
+    margin-top: 10px;
+    text-align: center;
+    color: #ee4f4f;
+}
+
+.applyIco {
+    width: 50rpx;
+    height: 50rpx;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12rpx;
+}
+
+.applyText {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.login-btn {
+    width: 50%;
+    border-radius: 80rpx;
+    margin: 70rpx 50rpx;
+    font-size: 35rpx;
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    line-height: 2.55555556;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
+    color: #fff!important;
+    background-color: green!important;
+}

@@ -1,0 +1,58 @@
+<view class="SwiperLayout">
+    <view catchtap="toHome" class="toHome">
+        <image class="toHomeico" src="../../resource/images/home_w.png"></image>
+        <view class="toHomebg"></view>
+    </view>
+    <image mode="aspectFill" src="{{businessInfo.logo}}" style="width:100%;height:400rpx;"></image>
+</view>
+<view class="businessInfo">
+    <view class="businessTitle">{{businessInfo.name}}</view>
+    <view class="businessTime">营业时间：{{businessInfo.opentime}}</view>
+</view>
+<view class="businessMiddleInfo">
+    <view bindtap="OpenMap" class="businessMiddleLeft">
+        <view class="businessMiddleName">{{businessInfo.name}}</view>
+        <view class="businessMiddleAdr">{{businessInfo.address}}</view>
+    </view>
+    <view bindtap="CallBusiness" class="businessMiddleRight">
+        <image class="businessMiddleTel" src="../../resource/images/tel.png"></image>
+    </view>
+    <view class="clear"></view>
+</view>
+<view class="businessActiviy">
+    <view class="businessActiviyTitle">本店活动</view>
+    <view class="businessActiviyList" wx:if="{{businessInfo.activitynum>0}}">
+        <view class="businessActiviyItem" wx:for="{{businessInfo.activity}}" wx:for-item="itemName">
+            <navigator class="tourl" url="../../pages/detail/detail?activityid={{itemName.id}}" wx:if="{{itemName.activitymod=='kanjia'}}">
+                <view class="ItemIcon kanjia">砍</view>
+                <image class="ItemPic" mode="aspectFill" src="{{itemName.pic}}"></image>
+                <view class="ItemText">
+                    <view class="ItemTitle">{{itemName.title}}</view>
+                    <view class="ItemPrice">
+                        <text class="yuan">￥</text>{{itemName.lowprice}}</view>
+                    <view class="ItemOldPrice">￥{{itemName.oldprice}}</view>
+                </view>
+            </navigator>
+            <navigator class="tourl" url="../../pages/panicbuy_detail/panicbuy_detail?activityid={{itemName.id}}" wx:if="{{itemName.activitymod=='panicbuy'}}">
+                <view class="ItemIcon panicbuy">抢</view>
+                <image class="ItemPic" mode="aspectFill" src="{{itemName.pic}}"></image>
+                <view class="ItemText">
+                    <view class="ItemTitle">{{itemName.title}}</view>
+                    <view class="ItemPrice">
+                        <text class="yuan">￥</text>{{itemName.nowprice}}</view>
+                    <view class="ItemOldPrice">￥{{itemName.oldprice}}</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class="noActivity" wx:if="{{businessInfo.activitynum==0}}">暂无正在进行的活动</view>
+</view>
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="businessContent">
+    <view class="ContentTitle">商户详情</view>
+    <view class="businessDesc">
+        <template is="wxParse" data="{{wxParseData:businessDesc.nodes}}"></template>
+    </view>
+</view>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

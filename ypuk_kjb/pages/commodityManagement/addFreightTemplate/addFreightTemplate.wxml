@@ -1,0 +1,16 @@
+<!-- <import src="../../utils/components/toptips/toptips.wxml"></import> -->
+<!-- <template is="toptips" data="{{...$wux.toptips}}"></template> -->
+<form bindsubmit="userformSubmit" id="userform">
+    <view class="hang_par">
+        <view class="hang">
+            <text>运费名称</text>
+            <input name="dispatchname" placeholder="请填写运费名称"></input>
+        </view>
+        <view class="hang">
+            <text>运费（元）</text>
+            <input name="firstprice" placeholder="请填写运费金额" type="number"></input>
+        </view>
+    </view>
+    <view class="tishiyu">设置国内统一运费价格</view>
+    <button class="baocun_btn " disabled="{{buttondisabled}}" formType="submit">提交</button>
+</form>

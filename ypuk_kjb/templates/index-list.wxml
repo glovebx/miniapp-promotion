@@ -1,0 +1,193 @@
+<template name="tempCommonList">
+    <view class="CommonList">
+        <view class="ListItem" wx:for="{{activityList}}" wx:key="key" wx:for-item="itemName">
+          <form>
+            <block wx:if="{{itemName.category=='bargain'}}">
+                <button bindtap='go2Detail' data-url="../../pages/detail/detail?activityid={{itemName.id}}" class="indexLitItem" formType="submit" type="default">
+                <!-- <navigator class="tourl" url="../../pages/detail/detail?activityid={{itemName.id}}">
+                    <image class="itemIcon" src="../../resource/images/index_kanjia.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <text class="bargainNum">{{itemName.playerCount}}人正在参加</text>
+                        <view class="clear"></view>
+                    </view>
+                </navigator> -->
+                    <image class="itemIcon" src="../../resource/images/index_kanjia.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:key="key" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <text class="bargainNum">{{itemName.playerCount}}人正在参加</text>
+                        <view class="clear"></view>
+                    </view>
+                </button>
+                <view class="bottominfo">
+                    <view class="leftPrice">
+                        <text class="lowText">最低￥</text>
+                        <text class="lowPrice">{{itemName.floorPrice}}</text>
+                        <text class="oldPrice">原价￥{{itemName.originalPrice}}</text>
+                    </view>
+                    <view class="rightBtn">
+                        <navigator url="../../pages/detail/detail?activityid={{itemName.id}}" wx:if="{{itemName.status=='open'&&itemName.quantity>0}}">
+                            <view class="goDetail">去砍价</view>
+                        </navigator>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='open'&&itemName.quantity==0}}">已无库存</view>
+                        <block wx:if="{{itemName.status=='ready'}}">
+                            <view class="goDetail normal" wx:if="{{itemName.remindMe==0}}">即将开始</view>
+                            <form bindsubmit="setRemind" wx:if="{{itemName.remindMe==1}}">
+                                <input hidden="{{true}}" name="aid" value="{{itemName.id}}"></input>
+                                <input hidden="{{true}}" name="mod" value="bargain"></input>
+                                <input hidden="{{true}}" name="idx" value="{{index}}"></input>
+                                <button class="goDetail remind" formType="submit" type="default">提醒我</button>
+                            </form>
+                            <view class="goDetail reminded" wx:if="{{itemName.remindMe==2}}">已设置提醒</view>
+                        </block>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='close'}}">活动结束</view>
+                    </view>
+                    <view class="clear"></view>
+                </view>
+            </block>
+            <block wx:if="{{itemName.category=='panic_buy'}}">
+                <!-- <navigator class="tourl" url="../../pages/panicbuy_detail/panicbuy_detail?activityid={{itemName.id}}">
+                    <image class="itemIcon" src="../../resource/images/index_panicbuy.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <text class="bargainNum">{{itemName.playerCount}}人已抢购</text>
+                        <view class="clear"></view>
+                    </view>
+                </navigator> -->
+                <button bindtap='go2Detail' data-url="../../pages/panicbuy_detail/panicbuy_detail?activityid={{itemName.id}}" class="indexLitItem" formType="submit" type="default">
+                    <image class="itemIcon" src="../../resource/images/index_panicbuy.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:key="key" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <view class="bargainNum">{{itemName.playerCount}}人已抢购</view>
+                        <view class="clear"></view>
+                    </view>
+                </button>
+                <view class="bottominfo">
+                    <view class="leftPrice">
+                        <text class="lowText">抢购价￥</text>
+                        <text class="lowPrice">{{itemName.panicPrice}}</text>
+                        <text class="oldPrice">原价￥{{itemName.originalPrice}}</text>
+                    </view>
+                    <view class="rightBtn">
+                        <navigator url="../../pages/panicbuy_detail/panicbuy_detail?activityid={{itemName.id}}" wx:if="{{itemName.status=='open'&&itemName.quantity>0}}">
+                            <view class="goDetail">去抢购</view>
+                        </navigator>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='open'&&itemName.quantity==0}}">已无库存</view>
+                        <block wx:if="{{itemName.status=='ready'}}">
+                            <view class="goDetail normal" wx:if="{{itemName.remindMe==0}}">即将开始</view>
+                            <form bindsubmit="setRemind" wx:if="{{itemName.remindMe==1}}">
+                                <input hidden="{{true}}" name="aid" value="{{itemName.id}}"></input>
+                                <input hidden="{{true}}" name="mod" value="panic_buy"></input>
+                                <input hidden="{{true}}" name="idx" value="{{index}}"></input>
+                                <button class="goDetail remind" formType="submit" type="default">提醒我</button>
+                            </form>
+                            <view class="goDetail reminded" wx:if="{{itemName.remindMe==2}}">已设置提醒</view>
+                        </block>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='close'}}">活动结束</view>
+                    </view>
+                    <view class="clear"></view>
+                </view>
+            </block>
+            <block wx:if="{{itemName.category=='group_buy'}}">            
+                <!-- <navigator class="tourl" url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{itemName.id}}&unit={{itemName.unitPrices[0].unit}}">
+                    <image class="itemIcon" src="../../resource/images/index_groupbuy.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <text class="bargainNum">{{itemName.playerCount}}人已发起拼团</text>
+                        <view class="clear"></view>
+                    </view>
+                </navigator> -->
+                <button bindtap='go2Detail' data-url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{itemName.id}}&unit={{itemName.unitPrices[0].unit}}" class="indexLitItem" formType="submit" type="default">
+                    <image class="itemIcon" src="../../resource/images/index_groupbuy.png"></image>
+                    <view class="stock">剩余{{itemName.quantity}}份</view>
+                    <image class="pic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                    <view class="itemTitle">{{itemName.name}}</view>
+                    <view class="bargainUser" wx:if="{{itemName.playerCount > 0}}">
+                        <view class="userItem" wx:for="{{itemName.players}}" wx:key="key" wx:for-item="itemAvatar">
+                            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+                        </view>
+                        <view class="userItem">
+                            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+                        </view>
+                        <text class="bargainNum">{{itemName.playerCount}}人已发起拼团</text>
+                        <view class="clear"></view>
+                    </view>
+                </button>
+                <view class="bottominfo">
+                    <view class="leftPrice">
+                        <!-- <text class="lowText">拼团价￥</text>
+                        <text class="lowPrice">{{itemName.groupprice}}</text> -->
+                        <text class="oldPrice">原价￥{{itemName.originalPrice}}</text>
+                    </view>
+                    <view class="rightBtn">
+                        <view class="groupBuyUnit">
+                            <!-- <view wx:for="{{itemName.unitPrices}}" wx:for-item="unitPrice">                    -->
+                              <navigator url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{itemName.id}}&unit={{itemName.unitPrices[0].unit}}" wx:if="{{itemName.status=='open'&&itemName.quantity > 0}}">
+                                  <view class="goGroupBuyDetail">￥{{itemName.unitPrices[0].unitPrice}} <text>{{itemName.unitPrices[0].unitStr}}</text></view>
+                              </navigator>
+
+                              <navigator url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{itemName.id}}&unit={{itemName.unitPrices[1].unit}}" wx:if="{{itemName.unitPrices.length > 1 && itemName.status=='open' && itemName.quantity > 0}}">
+                                  <view class="goGroupBuyDetail">更多拼</view>
+                              </navigator>
+                            <!-- </view> -->
+                        </view>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='open'&&itemName.quantity==0}}">已无库存</view>
+                        <block wx:if="{{itemName.status=='ready'}}">
+                            <view class="goDetail normal" wx:if="{{itemName.remindMe==0}}">即将开始</view>
+                            <form bindsubmit="setRemind" wx:if="{{itemName.remindMe==1}}">
+                                <input hidden="{{true}}" name="aid" value="{{itemName.id}}"></input>
+                                <input hidden="{{true}}" name="mod" value="group_buy"></input>
+                                <input hidden="{{true}}" name="idx" value="{{index}}"></input>
+                                <button class="goDetail remind" formType="submit" type="default">提醒我</button>
+                            </form>
+                            <view class="goDetail reminded" wx:if="{{itemName.remindMe==2}}">已设置提醒</view>
+                        </block>
+                        <view class="goDetail normal" wx:if="{{itemName.status=='close'}}">活动结束</view>
+                    </view>
+                    <view class="clear"></view>
+                </view>
+            </block>
+          </form>            
+        </view>
+    </view>
+</template>

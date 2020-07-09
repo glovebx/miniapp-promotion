@@ -1,0 +1,226 @@
+<block wx:if="{{toptipopen==1}}">
+    <import src="../../templates/toptip.wxml"></import>
+    <template is="tempTopTip" data="{{toptiparr:toptiparr}}"></template>
+</block>
+<view class="SwiperLayout">
+    <view catchtap="toHome" class="toHome">
+        <image class="toHomeico" src="../../resource/images/home_w.png"></image>
+        <view class="toHomebg"></view>
+    </view>
+    <swiper autoplay="true" class="swiper" indicatorDots="true" interval="10000">
+        <swiper-item wx:for="{{activityInfo.pics}}" wx:key="id">
+            <image catchtap='previewImage' data-url="{{item.pic}}" mode="aspectFill" src="{{item.pic}}" style="width:100%;height:400rpx;"></image>
+        </swiper-item>
+    </swiper>
+    <view class="PriceBar">
+        <view class="LeftPrice">
+            <view class="LowPrice">
+                <text class="YuanIcon">￥</text>{{activityInfo.floorPrice}}</view>
+            <view class="OldPrice">原价￥{{activityInfo.originalPrice}}</view>
+        </view>
+        <view class="OpbuyPrice" wx:if="{{activityInfo.buyPrice > 0}}">
+            <view class="OpbuyIcon">直接买</view>
+            <view class="OpbuyPriceText" style="{{activityInfo.buyPrice > 9999?'font-size:15px':''}}">
+                <text class="YuanIcon">￥</text>{{activityInfo.buyPrice}}</view>
+        </view>
+        <view class="RightTime">
+            <view class="TimeText">
+                <block wx:if="{{activityInfo.status=='ready'}}">
+                    <view class="CountDownText">活动开始倒计时</view>
+                    <view class="CountDown">
+                        <view class="TimeBox">{{CountDown_day}}</view>天<view class="TimeBox">{{CountDown_hour}}</view>
+                        <view class="TimeBox">{{CountDown_minute}}</view>
+                        <view class="TimeBox">{{CountDown_second}}</view>
+                    </view>
+                </block>
+                <block wx:if="{{activityInfo.status=='open'}}">
+                    <view class="CountDownText">活动结束倒计时</view>
+                    <view class="CountDown">
+                        <view class="TimeBox">{{CountDown_day}}</view>天<view class="TimeBox">{{CountDown_hour}}</view>:<view class="TimeBox">{{CountDown_minute}}</view>:<view class="TimeBox">{{CountDown_second}}</view>
+                    </view>
+                </block>
+                <block wx:if="{{activityInfo.status=='close'}}">
+                    <view class="CountDownText">活动结束时间</view>
+                    <view class="CountDown">{{activityInfo.timeEnd}}</view>
+                </block>
+            </view>
+        </view>
+        <view class="clear"></view>
+    </view>
+</view>
+<view class="activityInfo">
+    <view class="LeftInfo">
+      <view class="activityTitle">{{activityInfo.name}}</view>
+      <view class="activityPromise" wx:if="{{activityInfo.tags && activityInfo.tags.length > 0}}"><block wx:for="{{activityInfo.tags}}" wx:key="key" wx:for-item="tag"><text>{{tag}}</text></block></view>
+    </view>      
+    <view class="RightStock">
+        <text class="StockNum">{{activityInfo.quantity}}</text>
+        <text class="StockText">剩余库存</text>
+    </view>
+</view>
+
+<view class="infoList" wx:if="{{activityInfo.rules && activityInfo.rules.length > 0}}">
+    <view class="infoItem" wx:for="{{activityInfo.rules}}" wx:key="key" wx:for-item="rule">
+      <view class="infoTips">
+          <image class="infoIcon" src="../../resource/images/success.png"></image>
+          {{rule.content}}
+      </view>
+    </view>
+</view>
+
+<view class="bargainData">
+    <view class="dataLayout">
+        <view class="dataItem">
+            <view class="dataNum">{{activityInfo.views}}</view>
+            <view class="dataText">人查看</view>
+        </view>
+        <view class="dataItem">
+            <view class="dataNum">{{activityInfo.playerCount}}<text>/</text>{{activityInfo.memberCount}}</view>
+            <view class="dataText">人参与<text>/</text>人帮砍</view>
+        </view>
+        <view class="dataItem">
+            <view class="dataNum">{{activityInfo.saleCount}}</view>
+            <view class="dataText">人已下单</view>
+        </view>
+        <view class="clear"></view>
+    </view>
+    <view class="bargainUser" wx:if="{{activityInfo.playerCount > 0}}">
+        <view class="userItem" wx:for="{{activityInfo.players}}" wx:key="key" wx:for-item="itemAvatar">
+            <image class="userAvatar" mode="aspectFill" src="{{itemAvatar.avatarUrl}}"></image>
+        </view>
+        <view class="userItem">
+            <image class="userAvatar" src="../../resource/images/moreuser.png"></image>
+        </view>
+        <text class="bargainNum">{{activityInfo.playerCount + activityInfo.memberCount}}人正在参加</text>
+        <view class="clear"></view>
+    </view>
+</view>
+<!-- <view class="businessInfo" wx:if="{{activityInfo.businessid!=0&&activityInfo.business.name!=''}}">
+    <view class="businessTitle">适用门店</view>
+    <view bindtap="OpenBusiness" class="businessLeft">
+        <view class="businessName">{{activityInfo.business.name}}</view>
+        <view class="businessAdr">{{activityInfo.business.address}}</view>
+    </view>
+    <view bindtap="CallBusiness" class="businessRight">
+        <image class="businessTel" src="../../resource/images/tel.png"></image>
+    </view>
+    <view class="clear"></view>
+</view> -->
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="goodContent">
+    <view class="ContentTitle">商品详情</view>
+    <view class="goodDesc">
+        <!-- <view class="goodFreight" wx:if="{{activityInfo.allowcity&&activityInfo.allowcity!=''}}">可参与城市：
+{{activityInfo.allowcity}}
+</view> -->
+        <template is="wxParse" data="{{wxParseData:goodDesc.nodes}}"></template>
+    </view>
+</view>
+<!-- <view class="applyBar">
+    <navigator url="../../pages/apply/apply">
+        <image class="applyIco" src="../../resource/images/add.png"></image>
+        <text class="applyText">我是商户，我也要发布砍价活动</text>
+    </navigator>
+</view> -->
+<view class="infoList">     
+    <view class="infoItem">
+        <view class="infoTips">
+            <image class="infoIcon" src="../../resource/images/success.png"></image>
+            <block wx:if="{{activityInfo.goodsType!='service'}}">活动为商品类活动，交付方式为购买后活动方发货</block>
+            <block wx:if="{{activityInfo.goodsType=='service'}}">活动为服务类活动，交付方式为购买后用户到店出示订单</block>
+        </view>
+        <view class="clear"></view>
+    </view>
+    <!-- <view class="checkCity" wx:if="{{activityInfo.checkcity==0}}">
+        <view class="checkCityTips">当前地区暂时无法参与活动</view>
+        <view class="checkCityList">当前可参与城市：{{activityInfo.allowcity}}</view>
+    </view> -->
+    <!-- <view class="infoItem" style="{{activityInfo.checkcity==0?'border-top:0':''}}" wx:if="{{activityInfo.timeGoodsExpire}}"> -->
+    <view class="infoItem" wx:if="{{activityInfo.goodsType=='service' && activityInfo.timeGoodsExpire}}">
+        <text class="infoTitle">此商品有效期至</text>
+        <text class="infoText">{{activityInfo.timeGoodsExpire}}</text>
+        <view class="clear"></view>
+    </view>
+    <!-- <view class="infoItem" wx:if="{{activityInfo.type==1&&activityInfo.validity!=0}}"> -->
+    <view class="infoItem">
+        <text class="infoTitle">付款方式</text>
+        <text class="infoText">
+            <block wx:if="{{activityInfo.paymentType=='online'}}">在线支付</block>
+            <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType!='service'}}">货到付款</block>
+            <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType=='service'}}">到店付款</block>
+        </text>
+        <view class="clear"></view>
+    </view>
+    <view class="infoItem" wx:if="{{activityInfo.freight > 0}}">
+        <text class="infoTitle">运费</text>
+        <text class="infoText">￥{{activityInfo.freight}}</text>
+        <view class="clear"></view>
+    </view>
+</view>
+<import src="../../templates/recommend-list.wxml"></import>
+<view class="RecommendLayout" wx:if="{{activityList&&activityList!=[]}}">
+    <view class="RecommendTitle">推荐活动</view>
+    <template is="tempRecommendList" data="{{activityList:activityList}}"></template>
+</view>
+<block wx:if="{{fixedopen==1&&fixedarr.fixedbargain==1}}">
+    <import src="../../templates/fixedico.wxml"></import>
+    <template is="tempFixedIco" data="{{fixedarr:fixedarr}}"></template>
+</block>
+<view class="actionBar">
+    <view catchtap="toHome" class="addFav {{activityInfo.status=='open'&&activityInfo.quantity > 0&&activityInfo.buyPrice > 0?'short':'long'}}">
+        <image class="favIcon" src="../../resource/images/home.png"></image>
+        <view class="favText">首页</view>
+    </view>
+    <view class="shareGood {{activityInfo.status=='open'&&activityInfo.quantity > 0&&activityInfo.buyPrice > 0?'short':'long'}}">
+        <button bindtap="shareMenu" class="shareBtn">
+            <image class="shareIcon" src="../../resource/images/share.png"></image>
+            <view class="shareText">分享</view>
+        </button>
+    </view>
+    <view class="callUser">
+        <block wx:if="{{activityInfo.status=='ready'}}">
+            <view class="addbargain bar_normal" wx:if="{{activityInfo.remindMe==0}}">活动暂未开始</view>
+            <form bindsubmit="setRemind" wx:if="{{activityInfo.remindMe==1}}">
+                <button class="addbargain bar_remind" formType="submit" type="default">提醒我</button>
+            </form>
+            <view class="addbargain bar_reminded" wx:if="{{activityInfo.remindMe==2}}">已设置提醒</view>
+        </block>
+        <form bindsubmit="AddBargain" wx:if="{{activityInfo.status=='open'&&activityInfo.quantity > 0&&activityInfo.buyPrice < 0.01}}">
+            <button class="addbargain" formType="submit" type="default">
+              <view class="btnPrice">￥{{activityInfo.currentPrice || activityInfo.originalPrice}}</view>
+              <view class="btnText">发起砍价</view>
+            </button>
+        </form>
+        <block wx:if="{{activityInfo.status=='open' && activityInfo.quantity > 0 &&activityInfo.buyPrice > 0}}">
+            <!-- <form bindsubmit="AddBargain">
+                <button class="twobtn addbargain" formType="submit" type="default">发起砍价</button>
+            </form>
+            <form bindsubmit="ToOpAddorder">
+                <button class="twobtn addoporder" formType="submit" type="default">直接买</button>
+            </form> -->
+            <form bindsubmit="AddBargain">
+                <button class="twobtn addbargain" formType="submit" type="default">
+                <view class="btnPrice">￥{{activityInfo.currentPrice || activityInfo.originalPrice}}</view>
+                  <view class="btnText">发起砍价</view>
+                </button>
+            </form>
+            <form bindsubmit="ToOpAddorder">
+                <button class="twobtn addoporder" formType="submit" type="default">
+                    <view class="btnPrice">￥{{activityInfo.buyPrice}}</view>
+                    <view class="btnText">直接买</view>
+                </button>
+            </form>
+        </block>
+        <view class="addbargain bar_normal" wx:if="{{activityInfo.status=='close' || activityInfo.status=='cancel'}}">活动已结束</view>
+        <view class="addbargain bar_normal" wx:if="{{activityInfo.status=='expire'}}">活动已到期</view>
+        <view class="addbargain bar_normal" wx:if="{{activityInfo.quantity==0&&activityInfo.status=='open'}}">已无库存</view>
+    </view>
+</view>
+<view class="shareMenu" hidden="{{shareMenuHidden}}">
+    <button bindtap="CloseShareMenu" class="menuItem" openType="share">转发</button>
+    <button bindtap="showActivityPoster" class="menuItem" wx:if="{{activityInfo.showPoster}}">朋友圈海报</button>
+    <button bindtap="CloseShareMenu" class="menuItem close">取消</button>
+</view>
+<view bindtap="CloseShareMenu" class="shareMenuBg" hidden="{{shareMenuHidden}}"></view>
+<import src="../../templates/visit-coupon-model.wxml"></import>
+<template is="visit-free-lucky" data="{{free_lucky:freeLucky, entry_coupon:coupons[0]}}"></template>

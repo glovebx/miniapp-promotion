@@ -1,0 +1,9 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="recordList">
+    <view class="ListItem" wx:for="{{recordList}}" wx:for-item="itemName">
+        <image class="firendAvatar" src="{{itemName.avatarUrl}}"></image>
+        <text class="styleText">{{itemName.me ? '你' : itemName.name}}</text> 于 {{itemName.timeCreate}} 帮{{itemName.ta ? 'TA': '你'}}砍掉了 <text class="styleText">{{itemName.amount}}元</text><!-- ，砍后价格 <text class="styleText">{{itemName.remainPrice}}元</text> -->
+        <view class="clear"></view>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>

@@ -1,0 +1,228 @@
+<block wx:if="{{toptipopen==1}}">
+    <import src="../../templates/toptip.wxml"></import>
+    <template is="tempTopTip" data="{{toptiparr:toptiparr}}"></template>
+</block>
+<view class="activityInfo" wx:if="{{showLoginBtn}}">
+    <button bindtap="toLoginPage" class="login-btn" type="primary">登录查看</button>
+    <view class="clear"></view>
+</view>
+<view class="SwiperLayout">
+    <view catchtap="toHome" class="toHome">
+        <image class="toHomeico" src="../../resource/images/home_w.png"></image>
+        <view class="toHomebg"></view>
+    </view>
+    <navigator url="../../pages/detail/detail?activityid={{activityId}}">
+        <swiper autoplay="true" class="swiper" indicatorDots="true" interval="10000">
+            <swiper-item wx:for="{{activityInfo.pics}}" wx:key="id">
+                <image catchtap='previewImage' data-url="{{item.pic}}" mode="aspectFill" src="{{item.pic}}" style="width:100%;height:400rpx;"></image>
+            </swiper-item>
+        </swiper>
+    </navigator>
+</view>
+<view class="activityInfo">
+    <navigator url="../../pages/detail/detail?activityid={{activityId}}">
+        <view class="activityTitle">
+            <block wx:if="{{activityInfo.freight < 0.01 && activityInfo.goodsType!='service'}}">【包邮】</block>
+{{activityInfo.name}}
+</view>
+        <view class="Stock">当前库存：{{activityInfo.quantity}}<text class="stockTips">【库存为0时，所有砍价将停止】</text>
+        </view>
+    </navigator>
+</view>
+<block wx:if="{{activityInfo.player}}">
+    <image class="posterImg" src="{{posterImg}}"></image>
+    <view class="ProgressLayout">
+        <view class="ProgressTitle">
+            <image class="UserAvatar" src="{{activityInfo.player.avatarUrl}}"></image>
+            <text class="nowProgress">砍价进度：原价{{activityInfo.originalPrice}}元，已砍至{{activityInfo.currentPrice}}元</text>
+        </view>
+        <view class="Progress">
+            <view class="progressBar">
+                <view class="progressedBar" style="width:{{progressWidth}}%"></view>
+                <view class="startico"></view>
+                <view class="endico" style="background:{{progressEndicoColor}}"></view>
+            </view>
+            <view class="oldprice">￥{{activityInfo.originalPrice}}</view>
+            <view class="nowprice" style="left:{{progressNowpriceLeft}}%">￥{{activityInfo.currentPrice}}</view>
+            <view class="lowprice">￥{{activityInfo.floorPrice}}</view>
+            <view class="clear"></view>
+        </view>
+    </view>
+    <view class="activityStatus">
+        <view class="statusText">
+            <block wx:if="{{activityInfo.status=='ready'}}">
+                <text class="CountDownText">活动开始时间：</text>
+                <text class="CountDown">{{activityInfo.timeStart}}</text>
+            </block>
+            <block wx:if="{{activityInfo.status=='open'&&activityInfo.quantity > 0}}">
+                <text class="CountDownText">活动结束倒计时：</text>
+                <text class="CountDown">{{CountDown}}</text>
+            </block>
+            <block wx:if="{{activityInfo.status=='close'}}">
+                <text class="CountDownText">活动结束时间：</text>
+                <text class="CountDown">{{activityInfo.timeEnd}}</text>
+            </block>
+            <block wx:if="{{activityInfo.status=='open'&&activityInfo.quantity==0}}">
+                <text class="CountDownText">活动提前结束：</text>
+                <text class="CountDown">已无更多库存</text>
+            </block>
+            <block wx:if="{{activityInfo.orderInfo}}">
+              <block wx:if="{{activityInfo.orderInfo.status=='unpaid'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已创建，等待支付</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='pending'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已支付，等待发货</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='unconfirmed'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已发货</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='completed'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已完成</text>
+              </block>
+            </block>
+        </view>
+        <view class="clear"></view>
+    </view>
+    <view class="actionBtn">
+        <view class="bargainTop BtnItem">
+            <navigator url="../../pages/record/record?activityid={{activityId}}">帮砍纪录</navigator>
+        </view>
+        <view bindtap="shareMenu" class="BtnItem" style="width:320rpx;" wx:if="{{activityInfo.currentPrice > activityInfo.floorPrice && activityInfo.status=='open'&&activityInfo.quantity > 0}}">召唤好友帮我砍价</view>
+        <view class="BtnItem" style="width:350rpx;" wx:if="{{activityInfo.currentPrice <= activityInfo.floorPrice &&activityInfo.status=='open'&&activityInfo.quantity > 0}}">
+            <navigator url="../../pages/addorder/addorder?activityid={{activityId}}">砍价完成，等待下单</navigator>
+        </view>
+        <view class="BtnItem" style="width:330rpx;" wx:if="{{activityInfo.order}}">
+            <navigator url="../../pages/orderdetail/orderdetail?orderno={{activityInfo.orderNo}}">查看订单</navigator>
+        </view>
+        <view class="BtnItem normal" style="width:330rpx;" wx:if="{{activityInfo.status=='close'}}">活动已结束</view>
+        <view class="BtnItem normal" style="width:330rpx;" wx:if="{{activityInfo.status == 'open'&&activityInfo.quantity==0}}">已无更多库存</view>
+        <view class="clear"></view>
+    </view>
+</block>
+<block wx:if="{{activityInfo.sharePlayer}}">
+    <view class="bargainTips">{{activityInfo.sharePlayer.name}}正在参与{{activityInfo.shareName}}砍价活动，把价格砍到底价，TA就可以特惠抢购此商品啦！</view>
+    <view class="priceInfo">
+        <view class="oldPrice PriceItem">
+            <view class="PriceNum">{{activityInfo.originalPrice}}</view>
+            <view class="PriceText">原价</view>
+        </view>
+        <view class="lowPrice PriceItem">
+            <view class="PriceNum">{{activityInfo.floorPrice}}</view>
+            <view class="PriceText">最低价</view>
+        </view>
+        <view class="nowPrice PriceItem">
+            <view class="PriceNum">{{activityInfo.currentPrice}}</view>
+            <view class="PriceText">当前价</view>
+        </view>
+        <view class="clear"></view>
+    </view>
+    <view class="activityStatus">
+        <view class="statusText">
+            <block wx:if="{{activityInfo.status=='open'&&activityInfo.quantity > 0}}">
+                <text class="CountDownText">活动结束倒计时：</text>
+                <text class="CountDown">{{CountDown}}</text>
+            </block>
+            <block wx:if="{{activityInfo.status=='open'&&activityInfo.quantity==0}}">
+                <text class="CountDownText">活动提前结束：</text>
+                <text class="CountDown">已无更多库存</text>
+            </block>
+            <block wx:if="{{activityInfo.status=='close'&&activityInfo.quantity > 0}}">
+                <text class="CountDownText">活动结束时间：</text>
+                <text class="CountDown">{{activityInfo.timeEnd}}</text>
+            </block>
+            <block wx:if="{{activityInfo.orderInfo}}">
+              <block wx:if="{{activityInfo.orderInfo.status=='unpaid'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已创建，等待支付</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='pending'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已支付，等待发货</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='unconfirmed'&&activityInfo.goodsType!='service'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已发货</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='unconfirmed'&&activityInfo.goodsType=='service'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">等待到店</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='completed'&&activityInfo.goodsType!='service'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已完成</text>
+              </block>
+              <block wx:if="{{activityInfo.orderInfo.status=='completed'&&activityInfo.goodsType=='service'}}">
+                  <text class="CountDownText">订单状态：</text>
+                  <text class="CountDown">订单已核销</text>
+              </block>
+            </block>
+        </view>
+        <view class="clear"></view>
+    </view>
+    <view class="actionBtn">
+        <view class="bargainTop BtnItem" wx:if="{{activityInfo.sharePlayer.isMember}}">
+            <navigator url="../../pages/record/record?activityid={{activityId}}&shareUid={{activityInfo.sharePlayer.shareUid}}">砍价记录</navigator>
+        </view>
+        <!-- <view bindtap="HelpBargain" class="helpBargain BtnItem">帮TA砍价</view> -->
+        <form bindsubmit="AddBargain" wx:if="{{!activityInfo.sharePlayer.isMember}}">
+            <button class="addBargain BtnItem" formType="submit" type="default">立即砍价</button>
+        </form>
+        <view bindtap="shareMenu" class="BtnItem" style="width:320rpx;" wx:if="{{activityInfo.currentPrice > activityInfo.floorPrice && activityInfo.status=='open'&&activityInfo.quantity > 0}}">召唤好友帮TA砍价</view>    
+
+        <view class="clear"></view>
+    </view>
+    <import src="../../resource/wxParse/wxParse.wxml"></import>
+    <view class="activityDesc">
+        <view class="descTitle">商品详情</view>
+        <view class="descCon">
+            <view class="activityFreight">付款方式：
+<block wx:if="{{activityInfo.paymentType=='online'}}">在线支付</block>
+                <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType!='service'}}">货到付款</block>
+                <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType=='service'}}">到店付款</block>
+            </view>
+            <view class="goodFreight" wx:if="{{activityInfo.goodsType=='service'&&activityInfo.timeGoodsExpire}}">消费有效期：{{activityInfo.timeGoodsExpire}}</view>
+            <view class="activityFreight">活动类型：<block wx:if="{{activityInfo.goodsType!='service'}}">商品类（购买后活动方发货）</block>
+                <block wx:if="{{activityInfo.goodsType=='service'}}">服务类（购买后用户到店出示订单）</block>
+            </view>
+            <view class="activityFreight" wx:if="{{activityInfo.freight > 0}}">运费：{{activityInfo.freight}}</view>
+            <!-- <view class="activityFreight" wx:if="{{activityInfo.allowcity&&activityInfo.allowcity!=''}}">可参与城市：
+{{activityInfo.allowcity}}</view> -->
+            <template is="wxParse" data="{{wxParseData:activityDesc.nodes}}"></template>
+        </view>
+    </view>
+    <!-- <view class="applyBar">
+        <navigator url="../../pages/apply/apply">
+            <image class="applyIco" src="../../resource/images/add.png"></image>
+            <text class="applyText">我是商户，我也要发布砍价活动</text>
+        </navigator>
+    </view> -->
+</block>
+<view class="BargainModel" hidden="{{bargainModelHidden}}">
+    <view class="bargainIco">
+        <text class="bargainIcoPrice">{{bargainIcoPrice}}</text>
+        <image class="bargainIcoImg" src="../../resource/images/bargainbg.png"></image>
+    </view>
+    <view class="bargainPrice">{{bargainPrice}}</view>
+    <view class="bargainText">{{bargainText}}</view>
+    <form bindsubmit="hideBargainModel">
+        <button class="bargainBtn SysBtn" formType="submit" type="default">确定</button>
+    </form>
+    <!-- <button bindtap="hideBargainModel" class="bargainBtn" type="default" wx:if="{{ModelisSystem==0}}">确定</button> -->
+</view>
+<view class="BargainModelBg" hidden="{{bargainModelHidden}}"></view>
+<view class="shareMenu" hidden="{{shareMenuHidden}}">
+    <button bindtap="CloseShareMenu" class="menuItem" openType="share">转发</button>
+    <button bindtap="GetBargainPoster" class="menuItem" wx:if="{{activityInfo.showPoster}}">朋友圈海报</button>
+    <button bindtap="CloseShareMenu" class="menuItem close">取消</button>
+</view>
+<view bindtap="CloseShareMenu" class="shareMenuBg" hidden="{{shareMenuHidden}}"></view>
+<block wx:if="{{fixedopen==1&&fixedarr.fixedbargain==1}}">
+    <import src="../../templates/fixedico.wxml"></import>
+    <template is="tempFixedIco" data="{{fixedarr:fixedarr}}"></template>
+</block>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

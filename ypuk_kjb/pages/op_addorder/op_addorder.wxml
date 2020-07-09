@@ -1,0 +1,64 @@
+<view class="FormLayout">
+    <view class="form_con" wx:if="{{goodsPropertyNames.length > 0}}">
+        <label class="label">商品规格</label>
+        <picker bindchange="bindGoodsPropertyChange" range="{{goodsPropertyNames}}" value="{{goodsSkuIndex}}" style='width: 60%;'>
+            <view >{{goodsPropertyNames[goodsSkuIndex]}}</view>
+        </picker>
+    </view>    
+    <view class="form_con">
+        <input bindinput="bindUname" class="goodinput" style="width: 45%; float:left;" placeholder="请输入联系人姓名" value="{{uname}}"></input>
+        <view class="anonymous">
+          <switch class="switch" bindchange="onAnonymous" />
+          <view class="label">匿名</view>
+        </view>
+    </view>
+    <view class="form_con">
+        <input bindinput="bindTel" class="goodinput" placeholder="请输入联系人电话" value="{{utel}}"></input>
+    </view>
+    <view class="form_con">
+        <view class="label">选择地区</view>
+        <picker bindchange="bindPickerProvinceChange" range="{{provinces}}">
+            <view class="{{selProvince=='请选择'?'grey':''}}">{{selProvince}}</view>
+        </picker>
+        <picker bindchange="bindPickerCityChange" range="{{citys}}">
+            <view class="{{selCity=='请选择'?'grey':''}}">{{selCity}}</view>
+        </picker>
+        <picker bindchange="bindPickerChange" range="{{districts}}">
+            <view class="{{selDistrict=='请选择'?'grey':''}}">{{selDistrict}}</view>
+        </picker>
+    </view>    
+    <view class="form_con">
+        <input bindinput="bindAddress" class="goodinput" placeholder="请输入所在地址" value="{{uaddress}}"></input>
+    </view>
+    <view class="form_con">
+        <input bindinput="bindRemark" class="goodinput" placeholder="请输入订单备注" value="{{remark}}"></input>
+    </view>
+    <view bindtap="GetWechatAdr" class="getWechatAdr">
+        <image class="getWechatAdr_ico" src="../../resource/images/tongbu.png"></image>
+        <text class="getWechatAdr_text">同步微信收货信息</text>
+    </view>    
+</view>
+<view class="priceInfo">
+    <view class="priceItem">付款方式：
+ <block wx:if="{{activityInfo.paymentType=='online'}}">在线支付</block>
+        <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType!='service'}}">货到付款</block>
+        <block wx:if="{{activityInfo.paymentType=='offline'&&activityInfo.goodsType=='service'}}">到店付款</block>
+    </view>
+    <view class="priceItem">原价：￥{{activityInfo.originalPrice}}</view>
+    <view class="priceItem" wx:if="{{activityInfo.buyPrice > 0}}">直接买优惠价：￥{{activityInfo.buyPrice}}</view>
+    <view class="priceItem" wx:if="{{activityInfo.freight>0}}">运费：￥{{activityInfo.freight}}</view>
+    <view class="priceItem">实付款：￥{{activityInfo.totalPrice - discountAmount}}</view>
+</view>
+
+<view class="couponInfo" wx:if="{{couponList.length > 0}}">
+    <view class="couponItem">优惠券：</view>
+      <picker bindchange="bindCouponChange" range="{{couponList}}">
+          <view class="{{selectedCoupon=='请选择'?'grey':''}}">{{selectedCoupon}}</view>
+      </picker>
+</view>
+
+<form bindsubmit="addOrderBtn">
+    <button class="green_btn" formType="submit" plain="true" size="default" type="default">提交</button>
+</form>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

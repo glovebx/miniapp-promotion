@@ -1,0 +1,448 @@
+.page {
+    padding-bottom: 30rpx;
+    overflow-x: hidden;
+}
+
+.jinggao {
+    padding: 4rpx 30rpx;
+    background-color: #ff6600;
+    color: #fff;
+    font-size: 28rpx;
+}
+
+.content1 {
+    padding: 0 0 0 30rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+    width: 100%;
+}
+
+.content2 {
+    padding: 30rpx 0 30rpx 30rpx;
+    width: 100%;
+}
+
+.sp_name {
+    font-size: 32rpx;
+    line-height: 38rpx;
+    width: 690rpx;
+    height: 114rpx;
+    padding-top: 6rpx;
+}
+
+.formview {
+    width: 720rpx;
+    padding-right: 30rpx;
+    box-sizing: border-box;
+    padding-top: 20rpx;
+    padding-bottom: 10rpx;
+}
+
+.spzt {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20rpx;
+}
+
+.tuji_kuang {
+    display: inline-block;
+    width: 510rpx;
+    margin-left: 30rpx;
+}
+
+.imgview:nth-child(2) {
+    margin-top: 20rpx;
+}
+
+.img_sty {
+    display: inline-block;
+    width: 150rpx;
+    height: 150rpx;
+    position: relative;
+}
+
+.img_sty .imgs {
+    width: 100%;
+    height: 100%;
+}
+
+.img_sty .close_img {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    right: -16rpx;
+    top: -16rpx;
+    background-color: #fff;
+    border-radius: 20rpx;
+    box-sizing: border-box;
+}
+
+.img_sty:not(:nth-child(3n-2)) {
+    margin-left: 30rpx;
+}
+
+.weui-uploader__input-box {
+    width: 100%;
+    height: 100%;
+}
+
+.bt_small {
+    position: absolute;
+    bottom: 0;
+    font-size: 24rpx;
+    background-color: #ff6600;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.cont1 {
+    padding-top: 18rpx;
+    position: relative;
+    left: -8rpx;
+}
+
+.pad_bot {
+    padding-bottom: 30rpx;
+}
+
+.cont2 {
+    padding: 30rpx 0 20rpx 0;
+    position: relative;
+}
+
+.cont2:not(:first-child) {
+    border-top: 1rpx solid #eee;
+}
+
+.nxuanxiang {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 32rpx;
+    width: 160rpx;
+}
+
+.nxuanxiang1 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 32rpx;
+    width: 180rpx;
+}
+
+.left_30 {
+    position: relative;
+    left: 42rpx;
+}
+
+.left_20 {
+    position: relative;
+    left: 30rpx;
+}
+
+.weitiao {
+    position: relative;
+    left: 10rpx;
+    top: 10rpx;
+    text-align: left!important;
+}
+
+.content3 picker {
+    width: 240rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.spjj {
+    display: inline-block;
+    width: 500rpx;
+    line-height: 36rpx;
+    height: 108rpx;
+    font-size: 32rpx;
+    padding: 0 10rpx;
+    position: relative;
+    left: 20rpx;
+}
+
+.inputkuang {
+    display: inline-block;
+    vertical-align: top;
+    width: 480rpx;
+    font-size: 32rpx;
+    padding-left: 10rpx;
+    text-align: right;
+    margin-right: 10rpx;
+}
+
+.inputkuang1 {
+    display: inline-block;
+    vertical-align: top;
+    width: 450rpx;
+    font-size: 32rpx;
+    padding-left: 10rpx;
+    text-align: right;
+    margin-right: 10rpx;
+}
+
+.danwei {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 32rpx;
+}
+
+.add_img {
+    width: 32rpx;
+    height: 32rpx;
+    position: relative;
+    top: 12rpx;
+}
+
+.viewkuang {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 555;
+}
+
+.content3 {
+    padding: 30rpx 0 30rpx 30rpx;
+    background-color: #fff;
+    position: relative;
+}
+
+.content4 {
+    padding: 0 0 0 30rpx;
+    background-color: #fff;
+    position: relative;
+}
+
+.dianpu_name {
+    display: inline-block;
+    font-size: 32rpx;
+    vertical-align: middle;
+    width: 460rpx;
+}
+
+.zhuangtai {
+    display: inline-block;
+    font-size: 32rpx;
+    position: absolute;
+    right: 56rpx;
+    color: #999;
+    top: 34rpx;
+}
+
+.dayuhao {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 30rpx;
+}
+
+.switch_btn {
+    margin-left: 100rpx;
+}
+
+.radio-group {
+    display: inline-block;
+}
+
+.shangpinzhuangtai {
+    display: inline-block;
+    font-size: 32rpx;
+    vertical-align: middle;
+    width: 260rpx;
+}
+
+.radio:not(:first-child) {
+    margin-left: 50rpx;
+}
+
+.tijiao_btn {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #ff6600;
+    color: #fff;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 32rpx;
+    margin-top: 50rpx;
+}
+
+.shangpgg_add {
+    background-color: #fff;
+    margin-top: 42rpx;
+    padding: 0 0 20rpx 30rpx;
+    width: 670rpx;
+    position: relative;
+}
+
+.shangpgg_add .delete {
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    margin: auto;
+    top: -25rpx;
+    right: -25rpx;
+}
+
+.shangpgg_xx {
+    width: 670rpx;
+    box-sizing: border-box;
+    padding-left: 20%;
+    position: relative;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.addguige_x {
+    margin-top: 30rpx;
+    width: 240rpx;
+    font-size: 26rpx;
+    border: 1rpx solid #ff6600;
+    color: #1aa91d;
+    background-color: #fff;
+}
+
+.sp_hang1 {
+    width: 100%;
+    height: 96rpx;
+    line-height: 96rpx;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.sp_hang {
+    width: 94%;
+    height: 86rpx;
+    line-height: 86rpx;
+    font-size: 28rpx;
+}
+
+.sp_hang:not(:first-child) {
+    border-top: 1rpx solid #eee;
+}
+
+.sp_hang text,.sp_hang1 text {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+}
+
+.sp_hang input,.sp_hang1 input {
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle;
+}
+
+.shangpgg_add .shanchu {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: -25rpx;
+    border: 8rpx solid #f4f4f4;
+    border-radius: 50%;
+}
+
+.mene_zhezhao {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.guanli_menu {
+    background-color: #f4f4f4;
+    position: fixed;
+    z-index: 500;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.guanli_menu button {
+    background-color: #fff;
+    border-radius: 0;
+    font-size: 32rpx;
+    color: #666;
+    border: none;
+    line-height: 98rpx;
+}
+
+.bor_top {
+    border-top: 1rpx solid #eee;
+}
+
+.guanli_menu .guanli_menu_cild button,.bor_bot {
+    border-bottom: 1rpx solid #eee;
+}
+
+.guanli_menu_cild {
+    max-height: 495rpx;
+    overflow-y: auto;
+}
+
+.guanli_menu button::after {
+    border-radius: 0;
+    border: none;
+}
+
+.guanli_menu_b10 {
+    margin-bottom: 10rpx;
+}
+
+.beizhu {
+    font-size: 24rpx;
+    color: #ccc;
+}
+
+.box_ji2 {
+    width: 720rpx;
+}
+
+.box_ji2 .dianpu_name {
+    width: 430rpx;
+}
+
+.box_ji2 .inputkuang {
+    width: 450rpx;
+}
+
+.box_ji2 .cont2 {
+    border: none;
+}
+
+.biaoqian_box {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 30rpx;
+    padding-right: 30rpx;
+}
+
+.biaoqian_box view {
+    width: 120rpx;
+    height: 60rpx;
+    border: 1rpx solid #999;
+    color: #999;
+    line-height: 58rpx;
+    text-align: center;
+    border-radius: 30rpx;
+    box-sizing: border-box;
+}
+
+.biaoqian_box .active {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    line-height: 60rpx;
+}

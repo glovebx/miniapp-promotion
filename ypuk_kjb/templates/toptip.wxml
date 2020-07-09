@@ -1,0 +1,16 @@
+<template name="tempTopTip">
+    <view class="TopTip" hidden="{{toptiparr.toptiphidden}}">
+        <icon bindtap="CloseTopTip" class="TopTipCancel" type="cancel"></icon>
+        <text class="TopTipText">{{toptiparr.toptiptext}}</text>
+        <button class="toptipKefu TopTipBtn" openType="contact" wx:if="{{toptiparr.toptipaction=='openkefu'}}">
+{{toptiparr.toptipbtn}}      
+</button>
+        <navigator class="TopTipBtn" url="{{toptiparr.toptipaction}}{{toptiparr.toptipparams}}" wx:if="{{toptiparr.toptipaction!='openkefu'&&toptiparr.toptipaction!='openmapp' && toptiparr.toptipaction}}">
+   {{toptiparr.toptipbtn}}     
+</navigator>
+        <view bindtap="ToToptipApp" class="TopTipBtn" wx:if="{{toptiparr.toptipaction=='openmapp'}}">
+{{toptiparr.toptipbtn}}      
+</view>
+        <view class="clear"></view>
+    </view>
+</template>

@@ -1,0 +1,10 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="noticeList">
+    <view class="noticeItem" wx:for="{{noticeList}}" wx:key="id">
+        <navigator url="../../pages/notice/notice?noticeid={{item.id}}">
+            <view class="noticeTitle">{{item.title}}</view>
+            <view class="noticeTime">{{item.timeCreate}}</view>
+        </navigator>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>

@@ -1,0 +1,33 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="orderList">
+    <view class="orderItem" wx:for="{{orderList}}" wx:for-item="itemName">
+        <navigator url="../../pages/panicbuy_orderdetail/panicbuy_orderdetail?orderno={{itemName.orderNo}}">
+            <view class="orderNo">订单号：{{itemName.orderNo}}</view>
+            <view class="orderInfo">
+                <view class="infoItem">创建时间：{{itemName.timeCreate}}</view>
+                <view class="infoItem" wx:if="{{itemName.activityInfo.goodsType=='service'&&itemName.activityInfo.timeGoodsExpire}}">有效期至：{{itemName.activityInfo.timeGoodsExpire}}</view>
+                <view class="infoItem">支付方式：<block wx:if="{{itemName.activityInfo.paymentType=='online'}}">在线支付</block>
+                    <block wx:if="{{itemName.activityInfo.paymentType=='offline'}}">货到付款</block>
+                </view>
+                <view class="infoItem">总价：￥{{itemName.totalPrice}}</view>
+                <view class="infoItem">订单状态：<block wx:if="{{itemName.status=='unpaid'}}">订单已创建，等待支付</block>
+                    <block wx:if="{{itemName.status=='pending'}}">等待发货</block>
+                    <block wx:if="{{itemName.status=='unconfirmed'&&itemName.activityInfo.goodsType!='service'}}">订单已发货</block>
+                    <block wx:if="{{itemName.status=='unconfirmed'&&itemName.activityInfo.goodsType=='service'}}">等待到店</block>
+                    <block wx:if="{{itemName.status=='completed'&&itemName.activityInfo.goodsType=='service'}}">订单已完成</block>
+                    <block wx:if="{{itemName.status=='completed'&&itemName.activityInfo.goodsType!='service'}}">订单已核销</block>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="orderActivity">
+                <image class="orderPic" mode="aspectFill" src="{{itemName.activityInfo.coverPic}}"></image>
+                <view class="orderTitle">{{itemName.activityInfo.name}}</view>
+                <view class="clear"></view>
+            </view>
+            <view class="clear"></view>
+        </navigator>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

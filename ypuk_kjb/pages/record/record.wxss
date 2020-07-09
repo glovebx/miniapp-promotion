@@ -1,0 +1,23 @@
+page {
+    background: #fff;
+}
+
+.recordList .ListItem {
+    margin: 0 40rpx;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    padding: 40rpx 0;
+}
+
+.ListItem .firendAvatar {
+    float: left;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+    margin-top: 10rpx;
+}
+
+.ListItem .styleText {
+    color: #dbb243;
+}

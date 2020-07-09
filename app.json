@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "ypuk_kjb/pages/index/index",
+    "ypuk_kjb/pages/tologin/tologin",
+    "ypuk_kjb/pages/record/record",
+    "ypuk_kjb/pages/my/my",
+    "ypuk_kjb/pages/mybargain/mybargain",
+    "ypuk_kjb/pages/myorder/myorder",
+    "ypuk_kjb/pages/detail/detail",
+    "ypuk_kjb/pages/bargain/bargain",
+    "ypuk_kjb/pages/addorder/addorder",
+    "ypuk_kjb/pages/op_addorder/op_addorder",
+    "ypuk_kjb/pages/orderdetail/orderdetail",
+    "ypuk_kjb/pages/verification/verification",
+    "ypuk_kjb/pages/notice/notice",
+    "ypuk_kjb/pages/noticelist/noticelist",
+    "ypuk_kjb/pages/verification_record/verification_record",
+    "ypuk_kjb/pages/apply/apply",
+    "ypuk_kjb/pages/panicbuy_list/panicbuy_list",
+    "ypuk_kjb/pages/panicbuy_detail/panicbuy_detail",
+    "ypuk_kjb/pages/panicbuy_orderdetail/panicbuy_orderdetail",
+    "ypuk_kjb/pages/panicbuy_addorder/panicbuy_addorder",
+    "ypuk_kjb/pages/mypanicbuy/mypanicbuy",
+    "ypuk_kjb/pages/business_detail/business_detail",
+    "ypuk_kjb/pages/groupbuy_list/groupbuy_list",
+    "ypuk_kjb/pages/groupbuy_detail/groupbuy_detail",
+    "ypuk_kjb/pages/groupbuy_add/groupbuy_add",
+    "ypuk_kjb/pages/groupbuy_group/groupbuy_group",
+    "ypuk_kjb/pages/groupbuy_buy/groupbuy_buy",
+    "ypuk_kjb/pages/groupbuy_orderdetail/groupbuy_orderdetail",
+    "ypuk_kjb/pages/mygrouporder/mygrouporder",
+    "ypuk_kjb/pages/mygroup/mygroup",
+    "ypuk_kjb/pages/mycoupon/mycoupon",
+    "ypuk_kjb/pages/kanjia_list/kanjia_list",
+    "ypuk_kjb/pages/goodsedit/goodsedit",
+    "ypuk_kjb/pages/commodityManagement/addGoodsClass/addGoodsClass",
+    "ypuk_kjb/pages/commodityManagement/addFreightTemplate/addFreightTemplate",
+    "ypuk_kjb/pages/survey/survey"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "高级拼团",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#f8f8f8",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#ef6769",
+    "borderStyle": "white",
+    "backgroundColor": "#f8f9fb",
+    "list": [
+      {
+        "pagePath": "ypuk_kjb/pages/index/index",
+        "text": "首页",
+        "iconPath": "ypuk_kjb/resource/images/home.png",
+        "selectedIconPath": "ypuk_kjb/resource/images/home_s.png"
+      },
+      {
+        "pagePath": "ypuk_kjb/pages/my/my",
+        "text": "我的",
+        "iconPath": "ypuk_kjb/resource/images/my.png",
+        "selectedIconPath": "ypuk_kjb/resource/images/my_s.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

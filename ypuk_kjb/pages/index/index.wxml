@@ -1,0 +1,105 @@
+<import src="../../templates/nomore.wxml"></import>
+<block wx:if="{{toptipopen==1}}">
+    <import src="../../templates/toptip.wxml"></import>
+    <template is="tempTopTip" data="{{toptiparr:toptiparr}}"></template>
+</block>
+<view class="SwiperLayout" wx:if="{{swiperList}}">
+    <swiper autoplay="true" class="swiper" indicatorDots="true" interval="5000">
+        <block wx:for="{{swiperList}}" wx:key="id">
+            <navigator url="{{item.linkUrl}}">
+                <swiper-item>
+                    <image catchtap='previewImage' data-url="{{item.picUrl}}" mode="aspectFill" src="{{item.picUrl}}" style="width:100%;height:266rpx;"></image>
+                </swiper-item>
+            </navigator>
+            <!-- <swiper-item wx:if="{{item.swiper_page=='openkefu'}}">
+                <view class="SwiperKefuLayout">
+                    <button class="SwiperKefu" openType="contact"></button>
+                    <image mode="aspectFill" src="{{item.swiper_image}}" style="width:100%;height:266rpx;"></image>
+                </view>
+            </swiper-item>
+            <view bindtap="ToSwiperApp" id="{{index}}" wx:if="{{item.swiper_page=='openmapp'}}">
+                <swiper-item>
+                    <image mode="aspectFill" src="{{item.swiper_image}}" style="width:100%;height:266rpx;"></image>
+                </swiper-item>
+            </view> -->
+        </block>
+    </swiper>
+</view>
+<view class="NoticeList" wx:if="{{noticeList && noticeList.length > 0}}">
+    <image class="noticeico" src="../../resource/images/notice.png"></image>
+    <swiper vertical autoplay="true" class="noticeswiper" interval="3000">
+        <navigator url="../../pages/notice/notice?noticeid={{item.id}}" wx:for="{{noticeList}}" wx:key="id">
+            <swiper-item>
+                <view class="noticetitle">{{item.title}}</view>
+                <view class="clear"></view>
+            </swiper-item>
+        </navigator>
+    </swiper>
+    <navigator class="noticeMorenav" url="../../pages/noticelist/noticelist">
+        <view class="noticeMore">more</view>
+    </navigator>
+    <view class="clear"></view>
+</view>
+<view class="categoryList" style="padding-bottom:20rpx;">
+<form>
+    <button bindtap='nav2Page' data-url="../../pages/groupbuy_list/groupbuy_list" class="categoryItem" formType="submit" type="default" style="width:33%">
+        <!-- <navigator url="../../pages/groupbuy_list/groupbuy_list">
+            <image class="categoryIcon" mode="aspectFill" src="../../resource/images/default_groupbuy_icon.png"></image>
+            <view class="categoryName">拼团</view>
+        </navigator> -->
+        <view>
+            <image class="categoryIcon" mode="aspectFill" src="../../resource/images/default_groupbuy_icon.png"></image>
+            <view class="categoryName">拼团</view>
+        </view>
+    </button>
+    <button bindtap='nav2Page' data-url="../../pages/kanjia_list/kanjia_list" class="categoryItem" formType="submit" type="default" style="width:33%">
+        <view>
+            <image class="categoryIcon" mode="aspectFill" src="../../resource/images/default_kanjia_icon.png"></image>
+            <view class="categoryName">砍价</view>
+        </view>
+    </button>
+    <button bindtap='nav2Page' data-url="../../pages/panicbuy_list/panicbuy_list" class="categoryItem" formType="submit" type="default" style="width:33%">
+        <view>
+            <image class="categoryIcon" mode="aspectFill" src="../../resource/images/default_panicbuy_icon.png"></image>
+            <view class="categoryName">抢购</view>
+        </view>
+    </button>
+    </form>    
+    <view class="clear"></view>
+</view>
+<!-- <view class="categoryList" wx:if="{{functiondata.openpanicbuy==0&&functiondata.opengroupbuy==0}}">
+    <view class="categoryItem" style="width:{{item.width}}" wx:for="{{showcategoryList}}">
+        <navigator url="../../pages/kanjia_list/kanjia_list?catid={{item.id}}">
+            <image class="categoryIcon" mode="aspectFill" src="{{item.icon}}"></image>
+            <view class="categoryName">{{item.name}}</view>
+        </navigator>
+    </view>
+    <view bindtap="showAllCategory" class="categoryItem" style="{{showAllCategoryHidden?'display:none':''}}">
+        <image class="categoryIcon morecat" mode="aspectFill" src="../../resource/images/catarrow.png"></image>
+        <view class="categoryName">全部</view>
+    </view>
+    <view bindtap="hideAllCategory" class="categoryItem" style="{{showHideCategoryHidden?'display:none':''}}">
+        <image class="categoryIcon morecat" mode="aspectFill" src="../../resource/images/catup.png"></image>
+        <view class="categoryName">收起</view>
+    </view>
+    <view class="clear"></view>
+</view> -->
+<view class="top-bar">
+    <view catchtap="onTapTag" class="top-bar-item {{item.selected?'top-bar-item-Selected':''}}" id="{{item.id}}" wx:for="{{topBarItems}}" wx:key="id">{{item.name}}</view>
+</view>
+<!-- <block wx:if="{{functiondata.openpanicbuy==0&&functiondata.opengroupbuy==0}}">
+    <import src="../../templates/common-list.wxml"></import>
+    <template is="tempCommonList" data="{{activityList:activityList}}"></template>
+</block> -->
+<block wx:if="{{fixedopen==1}}">
+    <import src="../../templates/fixedico.wxml"></import>
+    <template is="tempFixedIco" data="{{fixedarr:fixedarr}}"></template>
+</block>
+<!-- <block wx:if="{{functiondata.openpanicbuy==1||functiondata.opengroupbuy==1}}"> -->
+<block>
+    <import src="../../templates/index-list.wxml"></import>
+    <template is="tempCommonList" data="{{activityList:activityList}}"></template>
+</block>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

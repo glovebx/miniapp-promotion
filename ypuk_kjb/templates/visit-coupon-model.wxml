@@ -1,0 +1,19 @@
+<template name="visit-free-lucky">
+  <view class="visitFreeLuckyContainer" hidden="{{!free_lucky}}">
+      <view class="visitFreeLuckyCouponInfo"></view>
+      <view class="visitFreeLuckyBtnInfo">
+        <form bindsubmit="getFreeLucky" data-id="{{entry_coupon.id}}">
+          <button formType="submit" class="visitFreeLuckyBtn">马上领取</button>
+        </form>
+      </view>
+
+      <view class="close-panel">
+          <view class="close-line"></view>
+          <view bindtap="closeDialog" class="close-circle">
+              <view class="close-cross1"></view>
+              <view class="close-cross2"></view>
+          </view>
+      </view>      
+  </view>
+  <view class="visitFreeLuckyBg" hidden="{{!free_lucky}}"></view>
+</template>

@@ -1,0 +1,150 @@
+.swiper {
+    height: 266rpx;
+}
+
+.top-bar {
+    height: 100rpx;
+    background: #fff;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 3px 10px rgba(0,0,0,.06);
+    margin-bottom: 10px;
+}
+
+.top-bar-item {
+    display: inline-block;
+    background: #fff;
+    width: 31.3%;
+    color: #777;
+    text-align: center;
+    font-size: 14px;
+    line-height: 94rpx;
+    margin: 0 1%;
+}
+
+.top-bar-item-Selected {
+    border-bottom: 4px solid #ee4f4f;
+    color: #ee4f4f;
+    font-weight: bold;
+}
+
+.categoryList {
+    background: #fff;
+    width: 100%;
+}
+
+.categoryList .categoryItem {
+  padding: 20rpx 0;
+  float: left;
+  text-align: center;
+  width: 25%;
+  height: 160rpx;
+
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  -webkit-tap-highlight-color: transparent;
+  background: transparent; 
+  border: none;
+  border-radius: 0;
+}
+
+.categoryList .categoryItem::after {
+  border: none;
+}
+
+.categoryItem .categoryIcon {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+/* .categoryItem .categoryIcon.morecat {
+    width: 46rpx;
+    height: 46rpx;
+    padding: 10rpx;
+    border: 1px solid #919191;
+    border-radius: 20rpx;
+    margin: 7rpx;
+} */
+
+.categoryItem .categoryName {
+    font-size: 14px;
+    /* background-color: #ee4f4f; */
+    /* padding-top: 0px; */
+    margin-top: -32rpx;
+}
+
+.SwiperKefuLayout {
+    position: relative;
+    height: 266rpx;
+}
+
+.SwiperKefu {
+    width: 100%;
+    height: 266rpx;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.SwiperKefu::after {
+    border: 0;
+}
+
+.NoticeList {
+    padding: 30rpx 50rpx 30rpx 30rpx;
+    background: #fff;
+}
+
+.noticeswiper {
+    height: 40rpx;
+    width: 500rpx;
+    display: inline-block;
+    line-height: 36rpx;
+}
+
+.noticetitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 28rpx;
+    float: left;
+    width: 500rpx;
+    height: 36rpx;
+    color: #585858;
+}
+
+.noticetime {
+    font-size: 28rpx;
+    float: right;
+    color: #787878;
+}
+
+.noticeico {
+    width: 46rpx;
+    height: 46rpx;
+    margin-right: 20rpx;
+    display: inline-block;
+}
+
+.noticeMorenav {
+    width: 72rpx;
+    height: 28rpx;
+    float: right;
+    margin-top: 8rpx;
+}
+
+.noticeMore {
+    width: 72rpx;
+    height: 28rpx;
+    border: 1px solid #787878;
+    font-size: 11px;
+    text-align: center;
+    line-height: 28rpx;
+    border-radius: 6rpx;
+}

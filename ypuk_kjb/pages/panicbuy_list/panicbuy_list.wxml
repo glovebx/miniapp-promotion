@@ -1,0 +1,29 @@
+<import src="../../templates/panicbuy-list.wxml"></import>
+<import src="../../templates/nomore.wxml"></import>
+<block wx:if="{{toptipopen==1}}">
+    <import src="../../templates/toptip.wxml"></import>
+    <template is="tempTopTip" data="{{toptiparr:toptiparr}}"></template>
+</block>
+<view class="regionSelect">
+    <view class="regionItem">
+        <picker bindchange="bindTypeChange" range="{{typeList}}" rangeKey="name" value="{{typeIndex}}">
+            <view class="picker">
+                <text class="pickerText">{{typeList[typeIndex].name}}</text>
+                <image class="arrow" src="../../resource/images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="regionItem">
+        <picker bindchange="bindCategoryChange" range="{{categoryList}}" rangeKey="name" value="{{catIndex}}">
+            <view class="picker">
+                <text class="pickerText">{{categoryList[catIndex].name}}</text>
+                <image class="arrow" src="../../resource/images/arrow.png"></image>
+            </view>
+        </picker>
+    </view>
+    <view class="clear"></view>
+</view>
+<template is="tempPanicbuyList" data="{{activityList:activityList}}"></template>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

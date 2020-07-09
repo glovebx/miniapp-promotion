@@ -1,0 +1,114 @@
+<view class="userInfo" wx:if="{{userInfo.avatarUrl}}">
+    <image class="userAvatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="flex-row flex-x-center userName">
+      {{userInfo.nickName}}
+      <view class="userLevel"></view>
+    </view>
+</view>
+<view class="userInfo" wx:else>
+    <button bindtap='goLoginPageTimeOut' class="login-btn" type="primary">
+    去登录
+  </button>
+</view>
+<view class="waveWrapper waveAnimation">
+    <view class="waveWrapperInner bgTop">
+        <view class="wave waveTop" style=""></view>
+    </view>
+    <view class="waveWrapperInner bgBottom">
+        <view class="wave waveBottom" style=""></view>
+    </view>
+</view>
+
+<view class="MoneyInfo">
+  <view class="wallet flex-row">
+      <view class="flex-grow-0 wallet-1 flex-x-center flex-y-center">
+          <view>
+              <view class="flex-x-center">
+                <image class="flex-grow-0" src="../../resource/images/wallet.png" style="width:50rpx;height:50rpx;margin-right:10rpx;"></image>
+              </view>
+              <view class="fs-sm">我的钱包</view>
+          </view>
+      </view>
+
+      <view class="flex-grow-0 wallet-3 flex-x-center flex-y-center">
+        <view class="flex-grow-1 flex-y-center flex-col">
+            <view class="flex-x-center num-point">{{extraInfo.point}}</view>
+            <view class="flex-row flex-x-center">
+                <!-- <image class="flex-grow-0" src="../../resource/images/point.png" style="width:48rpx;height:48rpx;margin-right:10rpx;"></image> -->
+                <view class="flex-grow-0">积分</view>
+            </view>
+        </view>
+      </view>
+    
+  </view>
+</view>
+
+<view class="MenuList">
+    <view class="MenuItem" wx:for="{{menudata}}"  wx:key="id" wx:for-index="idx" wx:for-item="itemName">
+        <navigator class="MenuUrl" url="{{itemName.url}}">
+            <image class="MenuIcon" src="{{itemName.imgsrc}}"></image>
+            <view class="MenuText">{{menutext[idx]}}</view>
+        </navigator>
+    </view>
+    <!-- <view class="MenuItem" wx:if="{{setting.functiondata.openpanicbuy==1}}"> -->
+    <view class="MenuItem">
+        <navigator class="MenuUrl" url="../../pages/mypanicbuy/mypanicbuy">
+            <image class="MenuIcon" src="../../resource/images/panicbuy.png"></image>
+            <view class="MenuText">我的抢购订单</view>
+        </navigator>
+    </view>
+    <!-- <block wx:if="{{setting.functiondata.opengroupbuy==1}}"> -->
+    <block>
+        <view class="MenuItem">
+            <navigator class="MenuUrl" url="../../pages/mygroup/mygroup">
+                <image class="MenuIcon" src="../../resource/images/groupbuy.png"></image>
+                <view class="MenuText">我的拼团</view>
+            </navigator>
+        </view>
+        <view class="MenuItem">
+            <navigator class="MenuUrl" url="../../pages/mygrouporder/mygrouporder">
+                <image class="MenuIcon" src="../../resource/images/groupbuy.png"></image>
+                <view class="MenuText">我的拼团订单</view>
+            </navigator>
+        </view>
+    </block>
+    <view class="MenuItem">
+        <navigator class="MenuUrl" url="../../pages/mycoupon/mycoupon">
+            <image class="MenuIcon" src="../../resource/images/coupon.png"></image>
+            <view class="MenuText">我的优惠券</view>
+        </navigator>
+    </view>
+    <view class="MenuItem">
+        <navigator class="MenuUrl" url="../../pages/apply/apply">
+        <!-- <navigator class="MenuUrl" url="../../pages/survey/survey?surveyId=1572940280284"> -->
+            <image class="MenuIcon" src="../../resource/images/apply.png"></image>
+            <view class="MenuText">发布活动</view>
+        </navigator>
+    </view>
+    <block wx:if="{{userInfo.isclerk==1}}">
+        <view class="MenuItem">
+            <navigator class="MenuUrl" url="../../pages/verification/verification">
+                <image class="MenuIcon" src="../../resource/images/verification.png"></image>
+                <view class="MenuText">订单核销</view>
+            </navigator>
+        </view>
+        <view class="MenuItem">
+            <navigator class="MenuUrl" url="../../pages/verification_record/verification_record">
+                <image class="MenuIcon" src="../../resource/images/verification.png"></image>
+                <view class="MenuText">核销记录</view>
+            </navigator>
+        </view>
+    </block>
+    <block wx:if="{{setting.openkefu==1}}">
+        <button class="MenuItem ContactBtn" openType="contact" wx:if="{{setting.kefutype==0}}">
+            <image class="MenuIcon" src="../../resource/images/kefu.png"></image>
+            <view class="MenuText">在线客服</view>
+        </button>
+        <view bindtap="GoKefuQr" class="MenuItem" wx:if="{{setting.kefutype==1}}">
+            <image class="MenuIcon" src="../../resource/images/kefu.png"></image>
+            <view class="MenuText">微信客服</view>
+        </view>
+    </block>
+</view>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

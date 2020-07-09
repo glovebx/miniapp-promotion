@@ -1,0 +1,62 @@
+.FormLayout {
+    font-size: 28rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.form_con {
+    border-bottom: 1rpx solid #eee;
+}
+
+.FormLayout .goodinput {
+    height: 42rpx;
+    width: 75%;
+    padding: 24rpx 5%;
+    color: #777;
+}
+
+.label {
+    margin: 30rpx 3% 20rpx 2%;
+    color: #777;
+    float: left;
+    border-right: 2rpx solid #eee;
+    padding: 0 3% 0 2%;
+}
+
+.form_con .anonymous {
+  float: right;
+  width: 40%;
+}
+
+.form_con .anonymous .switch {
+  padding: 20rpx 0rpx 24rpx 0rpx;
+}
+
+.form_con .anonymous .label {
+  float: left;
+  height: 42rpx;
+}
+
+.priceInfo {
+    font-size: 14px;
+    width: 90%;
+    padding: 30rpx 5%;
+    background: #fff;
+}
+
+.priceItem {
+    margin-bottom: 10rpx;
+}
+
+picker {
+    /* margin-right: 20rpx; */
+    float: left;
+    width: 20%;
+    height: 40rpx;
+    padding: 30rpx 2%;
+    overflow: hidden;
+}
+
+.grey {
+    color: #c5c9ca;
+}

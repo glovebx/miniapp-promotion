@@ -1,0 +1,39 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="groupList">
+    <view class="groupItem" wx:for="{{groupList}}" wx:for-item="itemName">
+        <navigator url="../../pages/groupbuy_group/groupbuy_group?activityid={{itemName.id}}&unit={{itemName.unitPrice.unit}}">
+            <view class="groupActivity">
+                <image class="groupPic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                <view class="groupTitle">{{itemName.name}}</view>
+                <view class="clear"></view>
+            </view>
+            <view class="groupInfo">
+                <view class="infoItem">
+                    <view class="infoNum">
+                        <text class="yuan"></text>{{itemName.originalPrice}}</view>
+                    <view class="infoText">原价</view>
+                </view>
+                <view class="infoItem">
+                    <view class="infoNum">
+                        <text class="yuan"></text>{{itemName.unitPrice.unitPrice}}</view>
+                    <view class="infoText">拼团价</view>
+                </view>
+                <view class="infoItem">
+                    <view class="infoNum">{{itemName.memberCount + 1}}</view>
+                    <view class="infoText">人参与</view>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="groupStatus" wx:for="{{itemName.orderInfos}}" wx:for-item="orderInfo">
+            活动状态({{orderInfo.orderNo}})：<text class="statusText" wx:if="{{orderInfo.status=='unpaid'}}">等待支付</text>
+                <text class="statusText" wx:if="{{orderInfo.status=='closed'||itemName.status=='close'}}">拼团失败</text>
+                <text class="statusText" wx:if="{{orderInfo.status=='pending'&&itemName.status=='open'}}">正在拼团</text>
+                <text class="statusText" wx:if="{{orderInfo.status=='unconfirmed' || orderInfo.status=='unevaluated' || orderInfo.status=='completed'}}">拼团成功</text>
+            </view>
+            <view class="clear"></view>
+        </navigator>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

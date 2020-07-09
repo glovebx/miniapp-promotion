@@ -1,0 +1,11 @@
+<template name="tempFixedIco">
+    <button class="fixedKefu fixedLayout" openType="contact" wx:if="{{fixedarr.fixedaction=='openkefu'}}">
+        <image class="fixedIco" mode="aspectFill" src="{{fixedarr.fixedico}}"></image>
+    </button>
+    <navigator class="fixedLayout" url="{{fixedarr.fixedaction}}{{fixedarr.fixedparams}}" wx:if="{{fixedarr.fixedaction!='openkefu'&&fixedarr.fixedaction!='openmapp' && fixedarr.fixedaction}}">
+        <image class="fixedIco" mode="aspectFill" src="{{fixedarr.fixedico}}"></image>
+    </navigator>
+    <view bindtap="ToFixedApp" class="fixedLayout" wx:if="{{fixedarr.fixedaction=='openmapp'}}">
+        <image class="fixedIco" mode="aspectFill" src="{{fixedarr.fixedico}}"></image>
+    </view>
+</template>

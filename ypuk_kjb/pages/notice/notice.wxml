@@ -1,0 +1,12 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="noticeLayout">
+    <view class="noticeTitle">
+{{Notice.title}}
+</view>
+    <view class="noticeTime">
+{{Notice.timeCreate}}
+</view>
+    <view class="noticeContent">
+        <template is="wxParse" data="{{wxParseData:noticeContent.nodes}}"></template>
+    </view>
+</view>

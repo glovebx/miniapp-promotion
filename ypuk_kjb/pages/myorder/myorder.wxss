@@ -1,0 +1,26 @@
+.orderList .orderItem {
+    padding: 20rpx;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20rpx;
+    font-size: 14px;
+}
+
+.orderItem .orderActivity {
+    border-top: 1px dashed #eee;
+    padding-top: 20rpx;
+    margin-top: 20rpx;
+}
+
+.orderActivity .orderPic {
+    width: 130rpx;
+    height: 130rpx;
+    float: left;
+}
+
+.orderActivity .orderTitle {
+    float: left;
+    width: 75%;
+    font-size: 14px;
+    margin-left: 20rpx;
+}

@@ -1,0 +1,53 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="bargainList">
+    <view class="bargainItem" wx:for="{{bargainList}}" wx:for-item="itemName">
+        <navigator url="../../pages/bargain/bargain?activityid={{itemName.id}}">
+            <view class="bargainActivity">
+                <image class="bargainPic" mode="aspectFill" src="{{itemName.coverPic}}"></image>
+                <view class="bargainTitle">{{itemName.name}}</view>
+                <view class="clear"></view>
+            </view>
+            <view class="bargainInfo">
+                <view class="infoItem">
+                    <view class="infoNum">
+                        <text class="yuan"></text>{{itemName.originalPrice}}</view>
+                    <view class="infoText">原价</view>
+                </view>
+                <view class="infoItem">
+                    <view class="infoNum">
+                        <text class="yuan"></text>{{itemName.currentPrice}}</view>
+                    <view class="infoText">当前价</view>
+                </view>
+                <view class="infoItem">
+                    <view class="infoNum">
+                        <text class="yuan"></text>{{itemName.floorPrice}}</view>
+                    <view class="infoText">最低价</view>
+                </view>
+                <view class="infoItem">
+                    <view class="infoNum">{{itemName.memberCount}}</view>
+                    <view class="infoText">人帮砍</view>
+                </view>
+                <view class="clear"></view>
+            </view>
+            <view class="bargainStatus">
+活动状态：
+<text class="statusText" wx:if="{{itemName.status=='ready'}}">活动未开始</text>
+                <text class="statusText" wx:if="{{itemName.status=='open'&&itemName.quantity>0}}">活动进行中</text>
+                <text class="statusText" wx:if="{{itemName.status=='close'}}">活动已结束</text>
+                <text class="statusText" wx:if="{{itemName.status=='open'&&itemName.quantity==0}}">活动结束，已无更多库存</text>
+              <block wx:if="{{itemName.orderInfo}}">
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='unpaid'}}">订单已创建，等待支付</text>
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='pending'}}">等待发货</text>
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='unconfirmed'&&itemName.goodsType!='service'}}">订单已发货</text>
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='unconfirmed'&&itemName.goodsType=='service'}}">等待到店</text>
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='completed'&&itemName.goodsType!='service'}}">订单已完成</text>
+                <text class="statusText" wx:if="{{itemName.orderInfo.status=='completed'&&itemName.goodsType=='service'}}">订单已核销</text>
+              </block>
+            </view>
+            <view class="clear"></view>
+        </navigator>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

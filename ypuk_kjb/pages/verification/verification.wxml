@@ -1,0 +1,97 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="ClerkInfo">
+    <view class="ClerkTitle">店员信息</view>
+    <block wx:if="{{clerkInfo.isbusiness==1}}">
+        <view class="ClerkItem">
+            <text class="ClerkLabel">所属商户</text>
+            <text class="ClerkText">{{clerkInfo.businessname}}</text>
+        </view>
+        <view class="ClerkItem">
+            <text class="ClerkLabel">姓名</text>
+            <text class="ClerkText">{{clerkInfo.name}}</text>
+        </view>
+        <view class="ClerkItem">
+            <text class="ClerkLabel">工号</text>
+            <text class="ClerkText">{{clerkInfo.workno}}</text>
+        </view>
+    </block>
+    <block wx:if="{{clerkInfo.isbusiness==0}}">
+您暂未绑定商户，可输入核销密码核销与密码所关联的活动订单。
+</block>
+</view>
+<view class="FormLayout">
+    <view class="form_con">
+        <input bindinput="bindOrderNo" class="goodinput" placeholder="请输入订单ID" value="{{orderno}}"></input>
+        <image bindtap="scanQr" class="scanIcon" src="../../resource/images/scan.png"></image>
+    </view>
+    <view class="form_con" wx:if="{{clerkInfo.isbusiness==0}}">
+        <input bindinput="bindVPass" class="goodinput" placeholder="请输入核销密码" value="{{vpass}}"></input>
+    </view>
+</view>
+<view class="OrderLayout" wx:if="{{orderInfo!=''}}">
+    <view class="OrderType">
+        <view class="OrderTypeText" wx:if="{{orderInfo.type==1&&orderInfo.oporder==0}}">砍价订单</view>
+        <view class="OrderTypeText" wx:if="{{orderInfo.type==1&&orderInfo.oporder==1}}">砍价直接买订单</view>
+        <view class="OrderTypeText" wx:if="{{orderInfo.type==2}}">抢购订单</view>
+        <view class="OrderTypeText" wx:if="{{orderInfo.type==3&&orderInfo.oporder==0}}">拼团订单</view>
+        <view class="OrderTypeText" wx:if="{{orderInfo.type==3&&orderInfo.oporder==1}}">拼团单独购买订单</view>
+    </view>
+    <view class="ActivityInfo">
+        <navigator url="../../pages/detail/detail?activityid={{orderInfo.aid}}">
+            <image class="ActvityPic" mode="aspectFill" src="{{orderInfo.activity.pic[0]}}"></image>
+            <view class="ActivityRight">
+                <view class="ActivityTitle">{{orderInfo.activity.title}}</view>
+                <view class="ActivityStock">剩余库存：{{orderInfo.activity.stock}}</view>
+            </view>
+            <view class="clear"></view>
+        </navigator>
+    </view>
+    <view class="OrderInfo">
+        <view class="infoItem">订单编号：{{orderInfo.order_no}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.activity.type==1&&orderInfo.activity.validity!=0}}">有效期至：{{orderInfo.activity.validity}}</view>
+        <view class="infoItem">款式：{{orderInfo.goodmodel}}</view>
+        <view class="infoItem">联系人姓名：{{orderInfo.uname}}</view>
+        <view class="infoItem">联系人电话：{{orderInfo.tel}}</view>
+        <view class="infoItem">联系人地址：{{orderInfo.address}}</view>
+        <view class="infoItem">付款方式：<block wx:if="{{orderInfo.pay_type==1&&orderInfo.type!=3}}">在线支付</block>
+            <block wx:if="{{orderInfo.pay_type==2&&orderInfo.type!=3}}">线下付款</block>
+            <block wx:if="{{orderInfo.pay_type==1&&orderInfo.type==3}}">在线支付全款</block>
+            <block wx:if="{{orderInfo.pay_type==2&&orderInfo.type==3}}">在线预付款，线下支付尾款</block>
+        </view>
+        <view class="infoItem">原价：￥{{orderInfo.oldprice}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.type==1}}">砍后价：￥{{orderInfo.nowprice}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.type==2}}">抢购价：￥{{orderInfo.nowprice}}</view>
+        <block wx:if="{{orderInfo.type==3}}">
+            <block wx:if="{{orderInfo.oporder==1}}">
+                <view class="infoItem">单独购买总价：￥{{orderInfo.activity.buyprice}}</view>
+                <view class="infoItem" wx:if="{{orderInfo.pay_type==1}}">在线支付全款：￥{{orderInfo.activity.buyprice}}</view>
+                <block wx:if="{{orderInfo.pay_type==2}}">
+                    <view class="infoItem">在线预付款：￥{{orderInfo.activity.ol_buyprice}}</view>
+                    <view class="infoItem">线下尾款：￥{{orderInfo.activity.ofl_buyprice}}</view>
+                </block>
+            </block>
+            <block wx:if="{{orderInfo.oporder==0}}">
+                <view class="infoItem">拼团购买总价：￥{{orderInfo.activity.groupprice}}</view>
+                <view class="infoItem" wx:if="{{orderInfo.pay_type==1}}">在线支付全款：￥{{orderInfo.activity.groupprice}}</view>
+                <block wx:if="{{orderInfo.pay_type==2}}">
+                    <view class="infoItem">在线预付款：￥{{orderInfo.activity.ol_groupprice}}</view>
+                    <view class="infoItem">线下尾款：￥{{orderInfo.activity.ofl_groupprice}}</view>
+                </block>
+            </block>
+        </block>
+        <view class="infoItem" wx:if="{{orderInfo.freight>0}}">运费：￥{{orderInfo.freight}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.type==3}}">已付款：￥{{orderInfo.pay_price}}</view>
+        <view class="infoItem">订单总价：￥{{orderInfo.total_price}}</view>
+        <view class="infoItem">订单状态：<block wx:if="{{orderInfo.status==3&&orderInfo.activity.status!=2&&orderInfo.activity.stock>0}}">创建成功，等待付款</block>
+            <block wx:if="{{orderInfo.status==4}}">等待发货</block>
+            <block wx:if="{{orderInfo.status==5&&orderInfo.activity.type==0}}">已发货</block>
+            <block wx:if="{{orderInfo.status==5&&orderInfo.activity.type==1}}">等待到店</block>
+            <block wx:if="{{orderInfo.status==6&&orderInfo.activity.type==0}}">已完成</block>
+            <block wx:if="{{orderInfo.status==6&&orderInfo.activity.type==1}}">已核销</block>
+            <block wx:if="{{orderInfo.status==3&&orderInfo.activity.status==2||orderInfo.status==3&&orderInfo.activity.stock==0}}">已取消（库存为0或活动结束时，未支付的订单将自动取消）</block>
+        </view>
+    </view>
+</view>
+<button bindtap="VerificationOrder" class="green_btn" formType="submit" plain="true" size="default" type="default">提交</button>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

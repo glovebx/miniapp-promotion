@@ -1,0 +1,161 @@
+@import "../../resource/wxParse/wxParse.wxss";
+
+.SwiperLayout {
+    position: relative;
+    height: 400rpx;
+    overflow: hidden;
+}
+
+.businessInfo {
+    background: #fff;
+    padding: 20rpx 40rpx;
+    margin-bottom: 20rpx;
+}
+
+.businessInfo .businessTitle {
+    font-size: 15px;
+}
+
+.businessInfo .businessTime {
+    font-size: 13px;
+    color: #787878;
+    margin-top: 10rpx;
+}
+
+.businessMiddleInfo {
+    background: #fff;
+    padding: 30rpx;
+    font-size: 14px;
+    margin-bottom: 20rpx;
+}
+
+.businessMiddleLeft {
+    float: left;
+    width: 520rpx;
+    overflow: hidden;
+}
+
+.businessMiddleAdr {
+    color: #787878;
+    font-size: 13px;
+    margin-top: 6rpx;
+}
+
+.businessMiddleRight {
+    float: right;
+    margin-top: 16rpx;
+    border-left: 1px solid #eee;
+    padding: 10rpx 40rpx 0;
+}
+
+.businessMiddleTel {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.businessActiviy {
+    background: #fff;
+    padding: 30rpx;
+    font-size: 14px;
+    margin-bottom: 20rpx;
+}
+
+.businessActiviyTitle {
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 20rpx;
+}
+
+.businessActiviyItem {
+    padding: 20rpx 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.businessActiviyItem:last-child {
+    border-bottom: 0;
+}
+
+.noActivity {
+    text-align: center;
+    padding-top: 20rpx;
+    color: #787878;
+}
+
+.businessActiviyItem .ItemIcon {
+    display: inline-block;
+    width: 50rpx;
+    background: #f60;
+    height: 50rpx;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 50rpx;
+    margin-right: 16rpx;
+    vertical-align: middle;
+}
+
+.businessActiviyItem .ItemIcon.kanjia {
+    background: #53ae1e;
+}
+
+.businessActiviyItem .ItemPic {
+    width: 140rpx;
+    height: 140rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.businessActiviyItem .ItemText {
+    display: inline-block;
+    width: 460rpx;
+    margin-left: 20rpx;
+    vertical-align: middle;
+}
+
+.businessActiviyItem .ItemTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    line-height: 38rpx;
+    margin-bottom: 20rpx;
+}
+
+.businessActiviyItem .ItemPrice {
+    display: inline-block;
+    color: #ee4f4f;
+    margin-right: 20rpx;
+}
+
+.businessActiviyItem .ItemPrice .yuan {
+    font-size: 12px;
+}
+
+.businessActiviyItem .ItemOldPrice {
+    display: inline-block;
+    text-decoration: line-through;
+    color: #999;
+    font-size: 13px;
+}
+
+.businessContent {
+    background: #fff;
+    padding: 20rpx 40rpx;
+    margin-bottom: 20rpx;
+}
+
+.businessContent .ContentTitle {
+    margin-top: 10rpx;
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20rpx;
+}
+
+.businessContent .businessDesc {
+    font-size: 14px;
+    margin: 20rpx 0;
+}

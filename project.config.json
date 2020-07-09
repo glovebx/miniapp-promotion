@@ -1,0 +1,126 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"scopeDataCheck": false,
+		"coverView": true,
+		"es6": true,
+		"postcss": true,
+		"compileHotReLoad": false,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"autoAudits": false,
+		"newFeature": true,
+		"uglifyFileName": true,
+		"uploadWithSourceMap": true,
+		"useIsolateContext": true,
+		"nodeModules": false,
+		"enhance": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"showShadowRootInWxmlPanel": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wxb0e335c05cbb4ba5",
+	"projectname": "%E9%9A%8F%E6%89%8B%E6%8B%BC",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 7,
+			"list": [
+				{
+					"id": 0,
+					"name": "groupbuy_group测试",
+					"pathName": "ypuk_kjb/pages/detail/detail",
+					"query": "activityid=1"
+				},
+				{
+					"id": 1,
+					"name": "coupon测试",
+					"pathName": "ypuk_kjb/pages/mycoupon/mycoupon",
+					"query": "activityid=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "抢购红包测试",
+					"pathName": "ypuk_kjb/pages/panicbuy_detail/panicbuy_detail",
+					"query": "activityid=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团购进入测试",
+					"pathName": "ypuk_kjb/pages/groupbuy_detail/groupbuy_detail",
+					"query": "activityid=8&unit=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "砍价进入测试",
+					"pathName": "ypuk_kjb/pages/detail/detail",
+					"query": "activityid=9",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品编辑",
+					"pathName": "ypuk_kjb/pages/goodsedit/goodsedit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "投票测试",
+					"pathName": "ypuk_kjb/pages/survey/survey",
+					"query": "surveyId=1",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "ypuk_kjb/pages/survey/survey",
+					"pathName": "ypuk_kjb/pages/survey/survey",
+					"query": "scene=--1-",
+					"scene": 1011
+				}
+			]
+		}
+	}
+}

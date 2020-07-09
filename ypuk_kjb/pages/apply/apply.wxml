@@ -1,0 +1,44 @@
+<view class="ApplyTip">
+    <view class="ApplyTipTitle">申请提示</view>
+    <!-- <text class="ApplyTipText">{{SettingInfo.applytip}}</text> -->
+    <text class="ApplyTipText">请确保填写您本人的联系方式，我们将尽快电话联系</text>
+</view>
+<view class="FormLayout">
+    <!-- <view class="form_con">
+        <input bindinput="bindShopname" class="goodinput" placeholder="请输入店铺名称" value="{{shopname}}"></input>
+    </view>
+    <view class="form_con">
+        <input bindinput="bindShoptel" class="goodinput" placeholder="请输入店铺电话" value="{{shoptel}}"></input>
+    </view>
+    <view class="form_con">
+        <input bindinput="bindShopaddress" class="goodinput" placeholder="请输入店铺地址" value="{{shopaddress}}"></input>
+    </view> -->
+    <view class="form_con">
+        <input bindinput="bindContacts" class="goodinput" placeholder="请输入姓名" value="{{contacts}}"></input>
+    </view>
+    <view class="form_con">
+        <input bindinput="bindContactstel" class="goodinput" placeholder="请输入电话" value="{{contactstel}}"></input>
+    </view>
+    <view class="form_con">
+        <textarea bindinput="bindActivityintro" class="goodtext" maxlength="300" placeholder="想发起的活动内容介绍" value="{{activityintro}}"></textarea>
+    </view>
+    <view class="form_con">
+        <view class="label">预计开始时间</view>
+        <picker bindchange="bindStartTime" class="select_type" mode="date" start="{{StartDateStart}}" value="{{starttime}}">
+            <view class="goodinput">
+       {{starttime}}
+    </view>
+        </picker>
+    </view>
+    <view class="form_con">
+        <view class="label">预计结束时间</view>
+        <picker bindchange="bindEndTime" class="select_type" mode="date" start="{{EndDateStart}}" value="{{endtime}}">
+            <view class="goodinput">
+       {{endtime}}
+    </view>
+        </picker>
+    </view>
+</view>
+<form bindsubmit="addOrderBtn">
+    <button class="green_btn" formType="submit" plain="true" size="default" type="default">立即申请</button>
+</form>

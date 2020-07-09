@@ -1,0 +1,17 @@
+.noticeList {
+    background: #fff;
+}
+
+.noticeItem {
+    padding: 20rpx;
+    border-bottom: 2rpx solid #eee;
+}
+
+.noticeTitle {
+    font-size: 16px;
+}
+
+.noticeTime {
+    font-size: 14px;
+    color: #787878;
+}

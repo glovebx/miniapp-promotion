@@ -1,0 +1,93 @@
+.couponList .couponItem {
+    padding: 20rpx;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20rpx;
+    font-size: 14px;
+}
+
+.couponItem .couponAmountInfo {
+  /* background: #000; */
+    width: 220rpx;
+    font-size: 60rpx;
+    margin: 15px 0px;
+    text-align: center;
+    font-weight: 300;
+    float: left;
+    color: #ee4f4f;
+    /* padding-top: 15px; */
+
+}
+
+.couponItem .couponAmountInfo .couponAmountIcon {
+  width: 32rpx;
+  height: 32rpx;
+  background-image: url("https://www.moco.co/wechat_mall/static/src/img/mall/coupon-red.png");
+  background-size: 100% 100%;
+  float: right;
+}
+
+.couponItem .couponAmountInfo .couponAmount {
+  padding-top: 30rpx;
+}
+
+.couponItem .couponAmount text {
+  font-size: 30rpx;
+}
+
+.couponItem .couponDetail {
+    display: inline-block;
+    margin: 15px 0px;
+}
+
+.couponItem .couponDetail .couponTitle {
+    font-size: 24px;
+    color: #ee4f4f;
+}
+
+.couponItem .couponDetail .couponInfo .infoItem text {
+    color: #999;
+}
+
+.couponItem .couponDetail .couponInfo .warning {
+    color: #ee4f4f;
+}
+
+.couponItem .couponActivity {
+    border-top: 1px dashed #eee;
+    padding-top: 20rpx;
+    margin-top: 20rpx;
+}
+
+.couponActivity .activityPic {
+    width: 130rpx;
+    height: 130rpx;
+    float: left;
+}
+
+.couponActivity .activityTitle {
+    float: left;
+    width: 75%;
+    font-size: 14px;
+    margin-left: 20rpx;
+}
+
+.couponActivity .activitySaleCount {
+    float: left;
+    width: 75%;
+    font-size: 14px;
+    margin-left: 20rpx;
+}
+
+.couponActivity .activitySaleCount text {
+    color: #999;
+}
+
+.couponActivity .activitySaleCount .openSetting {
+  /* position: absolute; */
+  /* bottom: 10px; */
+  width: 40%;
+  /* left: 5%; */
+  height: 36px;
+  font-size: 14px;
+}

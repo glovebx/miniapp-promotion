@@ -1,0 +1,202 @@
+.FormLayout {
+    font-size: 28rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+    padding-bottom: 2rpx;
+}
+
+.form_con {
+  border-bottom: 1rpx solid #eee;
+}
+
+.FormLayout .goodinput {
+    height: 36rpx;
+    width: 80%;
+    padding: 24rpx 5%;
+    color: #000;
+}
+
+.FormLayout .goodinput_dummy {
+    min-height: 0;
+    height: 0;
+    line-height: 0;
+    width: 100%;
+}
+
+.FormLayout .goodtextarea {
+  height: 78rpx;
+    width: 80%;
+    padding: 24rpx 5%;
+    /* margin-top: 24rpx; */
+    color: #000;
+}
+
+.FormLayout .goodradiogroup {
+    width: 90%;
+    padding: 24rpx 5%;
+    color: #000;
+}
+
+.FormLayout .goodradiogroup text {
+    margin: 10rpx 20rpx 10rpx 0;
+    color: #000;
+    float: left;
+    /* border-right: 2rpx solid #eee; */
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    /* padding: 0 0 0 0; */
+}
+
+
+.FormLayout .goodcheckgroup {
+    width: 80%;
+    padding: 24rpx 5%;
+    color: #000;
+}
+
+.FormLayout .goodcheckgroup text {
+    margin: 10rpx 20rpx 10rpx 0;
+    color: #000;
+    float: left;
+    /* border-right: 2rpx solid #eee; */
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    /* padding: 0 3% 0 2%; */
+}
+
+/* .textarea_label:before {
+    display: block;
+} */
+
+.textarea_label {
+    margin: 30rpx 3% 20rpx 2%;
+    color: #777;
+    width: 90%;
+    border-left: 2rpx solid #eee;
+    /* background-color: #000; */
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    padding: 0 3% 0 2%;
+}
+
+.label {
+    margin: 30rpx 3% 20rpx 2%;
+    color: #777;
+    width: 90%;
+    float: left;
+    border-left: 2rpx solid #eee;
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    padding: 0 3% 0 2%;
+}
+
+.shortLabel {
+    margin: 30rpx 3% 20rpx 2%;
+    color: #777;
+    float: left;
+    border-left: 2rpx solid #eee;
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    padding: 0 3% 0 2%;
+}
+
+.form_con .mark {
+  color: #FF0000;
+  margin-right: 4rpx;
+}
+
+.form_con .anonymous {
+  float: right;
+  width: 40%;
+}
+
+.form_con .anonymous .switch {
+  padding: 20rpx 0rpx 24rpx 0rpx;
+}
+
+.form_con .anonymous .label {
+  float: left;
+  height: 42rpx;
+}
+
+.titleInfo {
+    font-size: 16px;
+    width: 90%;
+    padding: 30rpx 5%;
+    background: #fff;
+    border-bottom: 8rpx solid #eee;
+}
+
+.titleInfo .title {
+    margin: 10rpx 0 10rpx 0;
+    color: #000;
+    /* float: left; */
+    /* border-right: 2rpx solid #eee; */
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    /* padding: 0 3% 0 2%; */
+}
+.titleInfo .desc {
+  font-size: 12px;
+    margin: 10rpx 0 10rpx 0;
+    color: #777;
+    /* background-color: #000; */
+    /* float: left; */
+    /* border-right: 2rpx solid #eee; */
+    /* padding: 0 20rpx 0 2%; */
+    /* padding: 30rpx 5%; */
+    /* padding: 0 3% 0 2%; */
+}
+
+.priceInfo {
+    font-size: 14px;
+    width: 90%;
+    padding: 30rpx 5%;
+    background: #fff;
+}
+
+.priceItem {
+    margin-bottom: 10rpx;
+}
+
+picker {
+    /* margin-right: 20rpx; */
+    float: left;
+    width: 20%;
+    height: 40rpx;
+    padding: 30rpx 2%;
+    overflow: hidden;
+}
+
+.grey {
+    color: #c5c9ca;
+}
+
+.pickerdate {
+    /* margin-right: 20rpx; */
+    /* float: left; */
+    width: 70%;
+    height: 40rpx;
+    padding: 30rpx 2%;
+    overflow: hidden;
+}
+/* 
+.FormLayout .goodinputcopy {
+    height: 36rpx;
+    width: 60%;
+    padding: 24rpx 5%;
+    color: #000;
+} */
+
+.FormLayout .copy_btn {
+    background: #ee4f4f;
+    width: 64rpx;
+    height: 30rpx;
+    padding: 16rpx 3% 24rpx 4%;
+    margin-right: 10rpx;
+    margin-top: -10rpx;
+    color: #fff;
+    border: 0;
+    float: right;
+    border-radius: 12rpx;
+}

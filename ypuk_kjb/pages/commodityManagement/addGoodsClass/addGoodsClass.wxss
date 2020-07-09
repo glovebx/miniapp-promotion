@@ -1,0 +1,71 @@
+page {
+    background-color: #fff;
+}
+
+.hang_par {
+    background-color: #fff;
+}
+
+.hang {
+    width: 720rpx;
+    margin-left: 30rpx;
+    padding: 30rpx 0;
+}
+
+.hang:not(:last-child) {
+    border-bottom: 1rpx solid #eee;
+}
+
+.hang text {
+    display: inline-block;
+    width: 210rpx;
+    vertical-align: top;
+}
+
+.hang input {
+    display: inline-block;
+    width: 480rpx;
+    vertical-align: top;
+    text-align: right;
+}
+
+.tishiyu {
+    margin-left: 30rpx;
+    line-height: 98rpx;
+}
+
+.baocun_btn {
+    margin-top: 10rpx;
+    width: 90%;
+    background-color: #ff4f4f;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.bt_small {
+    background-color: #1AAD19;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: #fff;
+}
+
+.img_sty1 {
+    display: inline-block;
+    position: relative;
+    margin-right: 9px;
+    margin-bottom: 9px;
+    width: 77px;
+    height: 77px;
+}
+
+.img_sty1 image {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 9px;
+}
+
+.bt_small {
+    font-size: 28rpx;
+}

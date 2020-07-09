@@ -1,0 +1,184 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<form bindsubmit="fillSurvey">
+  <view class="FormLayout">
+    <view class="form_con" wx:if="{{goodsPropertyNames.length > 0}}">
+        <label class="label">商品规格</label>
+        <picker bindchange="bindGoodsPropertyChange" range="{{goodsPropertyNames}}" value="{{goodsSkuIndex}}" style='width: 60%;'>
+            <view >{{goodsPropertyNames[goodsSkuIndex]}}</view>
+        </picker>
+    </view>
+
+    <block wx:if="{{survey && survey.questions && survey.questions.length > 0}}">
+      <view class="titleInfo">
+        <view class="title">{{survey.title}}</view>
+        <!-- <view class="desc">{{survey.description}}</view> -->
+        <view class="desc">
+            <template is="wxParse" data="{{wxParseData:surveyDesc.nodes}}"></template>
+        </view>
+      </view> 
+
+      <block wx:for="{{survey.questions}}" wx:key="key" wx:for-item="question">
+        <block wx:if="{{question.type == 'textbox'}}">
+          <view class="form_con" style="{{question.copy ? 'height:72rpx;' : ''}}">
+            <view wx:if="{{question.copy}}" class="copy_btn" data-value="{{question.title}}" bindtap="copyValue">复制</view>
+            <view class="label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+            <input wx:if="{{!question.copy}}" disabled="{{question.disabled ? true : false}}" class="goodinput" placeholder="请在此输入内容" placeholder-class="grey" name="{{question.type}}{{question.questionId}}" value="{{surveyUserInput[question.questionId] ? surveyUserInput[question.questionId].valueText : ''}}"></input>
+          </view>
+        </block>
+
+        <block wx:if="{{question.type == 'numerical_box'}}">
+          <view class="form_con" style="{{question.copy ? 'height:72rpx;' : ''}}">
+            <view wx:if="{{question.copy}}" class="copy_btn" data-value="{{question.title}}" bindtap="copyValue">复制</view>
+            <view class="label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+            <input wx:if="{{!question.copy}}" disabled="{{question.disabled ? true : false}}" class="goodinput" type="digit" name="{{question.type}}{{question.questionId}}" placeholder="请在此输入内容" placeholder-class="grey" value="{{surveyUserInput[question.questionId] ? surveyUserInput[question.questionId].valueNumber : ''}}"></input>
+          </view>
+        </block>
+
+        <block wx:if="{{question.type == 'free_text'}}">
+          <view class="form_con" style="{{question.copy ? 'height:72rpx;' : ''}}">
+            <view wx:if="{{question.copy}}" class="copy_btn" data-value="{{question.title}}" bindtap="copyValue">复制</view>
+            <view class="textarea_label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+
+            <input wx:if="{{!question.copy}}" disabled="{{question.disabled ? true : false}}" class="goodinput" placeholder="请在此输入内容" placeholder-class="grey" name="{{question.type}}{{question.questionId}}" value="{{surveyUserInput[question.questionId] ? surveyUserInput[question.questionId].valueFreeText : ''}}"></input>
+
+            <!-- <textarea disabled="{{question.disabled ? true : false}}" class="goodtextarea" auto-height placeholder="请在此输入内容" placeholder-class="grey" name="free_text{{question.questionId}}" value="{{surveyUserInput[question.questionId] ? surveyUserInput[question.questionId].valueFreeText : ''}}"></textarea> -->
+          </view>
+        </block>
+
+        <!-- picker需要额外处理 surveyUserInput 对象-->
+        <block wx:if="{{question.type == 'datetime'}}">
+          <view class="form_con">
+            <view class="shortLabel"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+            <picker mode="date" disabled="{{question.disabled ? true : false}}" class="pickerdate" bindchange="bindDatePicker" data-question-id="{{question.questionId}}" data-answer-type="date" name="{{question.type}}{{question.questionId}}" value="{{datetimeUserInput[question.questionId] ? datetimeUserInput[question.questionId].valueDate : today}}" start="{{today}}">
+                <view>{{datetimeUserInput[question.questionId] ? datetimeUserInput[question.questionId].valueDate : today}}</view>
+            </picker>
+          </view>
+          <!-- 占位，否则界面会有点乱 -->
+          <view class="form_con">
+            <input class="goodinput_dummy" disabled="true"></input>
+          </view>
+        </block>
+
+        <block wx:if="{{question.type == 'simple_choice'}}">
+          <view class="form_con">
+            <view class="label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+            <radio-group class="goodradiogroup" name="{{question.type}}{{question.questionId}}" data-question-id="{{question.questionId}}">
+                <radio disabled="{{question.disabled ? true : false}}" class="radio" wx:for="{{question.labels}}" wx:key="labelId" value="{{item.labelId}}" checked="{{surveyUserInput[question.questionId] && surveyUserInput[question.questionId].valueSuggested[item.labelId]}}">
+                    <text>{{item.title}}</text>
+                </radio>
+            </radio-group>
+          </view>
+        </block>
+
+        <block wx:if="{{question.type == 'multiple_choice'}}">
+          <view class="form_con">
+            <view class="label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+            <checkbox-group class="goodcheckgroup" name="{{question.type}}{{question.questionId}}" data-question-id="{{question.questionId}}">
+                <checkbox disabled="{{question.disabled ? true : false}}" class="checkbox" wx:for="{{question.labels}}" wx:key="labelId" value="{{item.labelId}}" checked="{{surveyUserInput[question.questionId] && surveyUserInput[question.questionId].valueSuggested[item.labelId]}}">
+                    <text>{{item.title}}</text>
+                </checkbox>
+            </checkbox-group>
+          </view>
+        </block>
+
+        <!-- address需要额外处理 surveyUserInput 对象-->
+        <block wx:if="{{question.type == 'address'}}">
+          <!-- <view class="form_con">
+              <view class="shortLabel"><text class="mark" wx:if="{{question.required}}">*</text>选择地区</view>
+              <picker disabled="{{question.disabled ? true : false}}" bindchange="bindPickerProvinceChange" range="{{provinces}}" data-question-id="{{question.questionId}}">
+                  <view class="{{selProvince=='请选择' ? 'grey' : ''}}">{{selProvince}}</view>
+              </picker>
+              <picker disabled="{{question.disabled ? true : false}}" bindchange="bindPickerCityChange" range="{{citys}}" data-question-id="{{question.questionId}}">
+                  <view class="{{selCity=='请选择' ? 'grey' : ''}}">{{selCity}}</view>
+              </picker>
+              <picker disabled="{{question.disabled ? true : false}}" bindchange="bindPickerDistrictChange" range="{{districts}}" data-question-id="{{question.questionId}}">
+                  <view class="{{selDistrict=='请选择' ? 'grey' : ''}}">{{selDistrict}}</view>
+              </picker>
+          </view> -->
+          <view class="form_con">
+          <view class="textarea_label"><text class="mark" wx:if="{{question.required}}">*</text>{{question.title}}</view>
+              <textarea disabled="{{question.disabled ? true : false}}" class="goodtextarea" placeholder="请选择地址" placeholder-class="grey" value="{{addressUserInput[question.questionId] ? addressUserInput[question.questionId].valueText : ''}}"></textarea>
+          </view>
+          <view bindtap="getWechatAddress" data-question-id="{{question.questionId}}" data-answer-type="text" class="getWechatAdr">
+              <image class="getWechatAdr_ico" src="../../resource/images/tongbu.png"></image>
+              <text class="getWechatAdr_text">选择地址</text>
+          </view>
+        </block>
+
+        <!-- 图片 -->
+        <block wx:if="{{question.type == 'image'}}">
+          <view class="form_con">
+            <image style="width: 100%;padding:0 5rpx;" mode="widthFix" src="{{question.url}}" bindtap="previewImage" data-url="{{question.url}}"></image>
+          </view>
+        </block>
+
+      </block>
+
+        <button wx:if="{{!survey.disabled && submitProps.visible}}" class="green_btn" formType="submit" plain="true" size="default" type="default" style="{{submitProps.color ? 'color:' + submitProps.color + '!important;' : ''}}{{submitProps['background-color'] ? 'background-color:' + submitProps['background-color'] + '!important;' : ''}}">{{submitProps.title || '立即报名'}}</button>
+    </block>
+    <block wx:else>
+      <view bindtap="goHomePage" class="getWechatAdr">
+          <image class="getWechatAdr_ico" src="../../resource/images/home_s.png"></image>
+          <text class="getWechatAdr_text">无效的报名</text>
+      </view>
+    </block>
+
+<!-- 
+    <view class="form_con">
+      <view class="label">姓名</view>
+      <input bindinput="bindUname" class="goodinput" placeholder="请输入联系人姓名" value="{{uname}}"></input>
+    </view>
+    <view class="form_con">
+      <view class="label">电话</view>
+      <input bindinput="bindTel" class="goodinput" placeholder="请输入联系人电话" value="{{utel}}"></input>
+    </view>
+    <view class="form_con">
+        <view class="label">选择地区</view>
+        <picker bindchange="bindPickerProvinceChange" range="{{provinces}}">
+            <view class="{{selProvince=='请选择'?'grey':''}}">{{selProvince}}</view>
+        </picker>
+        <picker bindchange="bindPickerCityChange" range="{{citys}}">
+            <view class="{{selCity=='请选择'?'grey':''}}">{{selCity}}</view>
+        </picker>
+        <picker bindchange="bindPickerChange" range="{{districts}}">
+            <view class="{{selDistrict=='请选择'?'grey':''}}">{{selDistrict}}</view>
+        </picker>
+    </view>
+    <view class="form_con">
+    <view class="label">地址</view>
+        <input bindinput="bindAddress" class="goodinput" placeholder="请输入所在地址" value="{{uaddress}}"></input>
+    </view>
+    <view class="form_con">
+      <view class="label">备注</view>
+        <input bindinput="bindRemark" class="goodinput" placeholder="请输入订单备注" value="{{remark}}"></input>
+    </view>    
+    <view bindtap="GetWechatAdr" class="getWechatAdr">
+        <image class="getWechatAdr_ico" src="../../resource/images/tongbu.png"></image>
+        <text class="getWechatAdr_text">同步微信收货信息</text>
+    </view> -->
+</view>
+<!-- <view class="priceInfo">
+    <view class="priceItem">付款方式：<block wx:if="{{activityInfo.paymentType=='online'}}">在线支付</block>
+        <block wx:if="{{activityInfo.paymentType=='offline'}}">在线预付，<block wx:if="{{activityInfo.goodsType!='service'}}">货到后支付尾款</block>
+            <block wx:if="{{activityInfo.goodsType=='service'}}">到店后支付尾款</block>
+        </block>
+    </view>
+    <view class="priceItem">原价：￥{{activityInfo.originalPrice}}</view>
+    <view class="priceItem" wx:if="{{activityInfo.freight>0}}">运费：￥{{activityInfo.freight}}</view>
+    <view class="priceItem" wx:if="{{activityInfo.paymentType=='online'}}">购买价：￥{{activityInfo.buyPrice}}</view>
+    <block wx:if="{{activityInfo.paymentType=='offline'}}">
+        <view class="priceItem">购买价：￥{{activityInfo.buyPrice}}</view>
+        <view class="priceItem">在线预付：￥{{activityInfo.buyPrice}}</view>
+    </block>
+    <view class="priceItem">实付款：￥{{activityInfo.totalprice - discountAmount}}</view>
+</view> -->
+<!-- 
+<view class="couponInfo" wx:if="{{couponList.length > 0}}">
+    <view class="couponItem">优惠券：</view>
+      <picker bindchange="bindCouponChange" range="{{couponList}}">
+          <view class="{{selectedCoupon=='请选择'?'grey':''}}">{{selectedCoupon}}</view>
+      </picker>
+</view> -->
+</form>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

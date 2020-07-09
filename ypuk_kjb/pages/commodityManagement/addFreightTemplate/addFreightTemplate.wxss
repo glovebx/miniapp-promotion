@@ -1,0 +1,39 @@
+.hang_par {
+    background-color: #fff;
+}
+
+.hang {
+    width: 720rpx;
+    margin-left: 30rpx;
+    padding: 30rpx 0;
+}
+
+.hang:not(:last-child) {
+    border-bottom: 1rpx solid #eee;
+}
+
+.hang text {
+    display: inline-block;
+    width: 210rpx;
+    vertical-align: top;
+}
+
+.hang input {
+    display: inline-block;
+    width: 480rpx;
+    vertical-align: top;
+    text-align: right;
+}
+
+.tishiyu {
+    margin-left: 30rpx;
+    line-height: 98rpx;
+}
+
+.baocun_btn {
+    margin-top: 10rpx;
+    width: 90%;
+    background-color: #ff4f4f;
+    color: #fff;
+    font-size: 32rpx;
+}

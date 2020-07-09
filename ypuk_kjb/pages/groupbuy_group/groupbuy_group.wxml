@@ -1,0 +1,103 @@
+<block wx:if="{{toptipopen==1}}">
+    <import src="../../templates/toptip.wxml"></import>
+    <template is="tempTopTip" data="{{toptiparr:toptiparr}}"></template>
+</block>
+<view class="activityInfo" wx:if="{{showLoginBtn}}">
+    <button bindtap="toLoginPage" class="login-btn" type="primary">登录查看</button>
+    <view class="clear"></view>
+</view>
+<view class="activityInfo" wx:if="{{activityInfo.id}}">
+    <navigator url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{activityInfo.id}}&unit={{activityInfo.unitPrice.unit}}">
+        <image class="activityPic" mode="aspectFill" src="{{activityInfo.coverPic}}"></image>
+        <view class="activityRight">
+            <view class="activityTitle">{{activityInfo.name}}</view>
+            <view class="activityStock">还剩{{activityInfo.quantity}}件</view>
+            <view class="activityPrice">
+                <text class="groupPrice">￥{{activityInfo.unitPrice.unitPrice}}</text>
+                <text class="oldPrice delLine">￥{{activityInfo.originalPrice}}</text>
+            </view>
+        </view>
+    </navigator>
+    <view class="clear"></view>
+</view>
+<view class="groupDetail">
+    <view class="groupRecord" style="{{activityInfo.extraInfo.members.length > 4?'height:230rpx':''}}">
+        <view class="avatarBg" wx:if="{{activityInfo.id}}">
+            <view class="avatarBgItem">
+              <view class="avatarItem" wx:if="{{activityInfo.sharePlayer}}">
+                  <image class="avatarPic" mode="aspectFill" src="{{activityInfo.sharePlayer.avatarUrl}}"></image>
+                  <text class="firstIcon">团长</text>
+              </view>
+              <view class="avatarItem" wx:if="{{activityInfo.player}}">
+                  <image class="avatarPic" mode="aspectFill" src="{{activityInfo.player.avatarUrl}}"></image>
+                  <text class="firstIcon">团长</text>
+              </view>
+            </view>
+        
+            <view class="avatarBgItem" wx:for="{{activityInfo.extraInfo.members}}" wx:for-item="itemName" wx:key="id">
+              <view class="avatarItem" wx:if="{{itemName.avatarUrl}}">
+                  <image class="avatarPic" mode="aspectFill" src="{{itemName.avatarUrl}}"></image>
+              </view>            
+              <view class="avatarBgIcon" wx:else>+</view>
+            </view>
+        </view>
+        <!-- <view class="avatarList">
+            <view class="avatarItem" wx:for="{{activityInfo.record}}" wx:for-item="itemName" wx:key="id">
+                <image class="avatarPic" mode="aspectFill" src="{{itemName.avatarUrl}}"></image>
+                <text class="firstIcon" wx:if="{{itemName.level==0}}">团长</text>
+            </view>
+        </view> -->
+        <view class="clear"></view>
+    </view>
+    <view class="groupText">
+        <block wx:if="{{activityInfo.status=='open'&&activityInfo.quantity > 0&&activityInfo.extraInfo.shortage > 0}}">
+            <text>已有{{activityInfo.extraInfo.attendee}}人参团，还差{{activityInfo.extraInfo.shortage}}人</text>
+            <text class="CountDownText">剩余</text>
+            <text class="CountDown">{{CountDown}}</text>
+        </block>
+        <text wx:if="{{activityInfo.status=='open'&&activityInfo.quantity==0}}">已无更多库存，活动结束</text>
+        <!-- <text wx:if="{{activityInfo.sharePlayer && !activityInfo.extraInfo.isPrepaid}}">等待团长支付开团</text> -->
+        <text wx:if="{{activityInfo.extraInfo.shortage == 0 && activityInfo.extraInfo.unpaidAmount > 0}}">满员，等待支付完成</text>
+        <text wx:if="{{activityInfo.extraInfo.unpaidAmount < 0.01}}">拼团成功，等待<block wx:if="{{activityInfo.goodsType == 'service'}}">服务</block><block wx:else>发货</block></text>
+        <text wx:if="{{activityInfo.status=='close'}}">活动结束</text>
+        <text wx:if="{{activityInfo.status=='expire'}}">活动超时，拼团失败</text>
+    </view>
+    <block wx:if="{{activityInfo.player}}">
+        <button class="shareBtn" openType="share" wx:if="{{activityInfo.status=='open' && activityInfo.extraInfo.shortage > 0}}">立即邀请好友一起拼</button>
+        <block wx:if="{{!activityInfo.extraInfo.isPrepaid && activityInfo.extraInfo.orderInfos && activityInfo.extraInfo.orderInfos.length > 0}}">
+          <button bindtap="Pay" class="shareBtn" data-order_no="{{activityInfo.extraInfo.orderInfos[0].orderNo}}" data-price="{{activityInfo.extraInfo.orderInfos[0].totalPrice}}">现在支付开团</button>
+          <button bindtap="ToOrder" class="shareBtn" data-order_no="{{activityInfo.extraInfo.orderInfos[0].orderNo}}">查看订单</button>          
+        </block>
+
+        <block wx:if="{{activityInfo.extraInfo.unpaidAmount < 0.01 && activityInfo.extraInfo.orderInfos && activityInfo.extraInfo.orderInfos.length > 0}}">
+          <button bindtap="ToOrder" class="shareBtn" data-order_no="{{activityInfo.extraInfo.orderInfos[0].orderNo}}">查看订单</button>          
+        </block>
+
+        <block wx:if="{{activityInfo.extraInfo.isPrepaid && activityInfo.extraInfo.orderInfos && activityInfo.extraInfo.orderInfos.length > 0}}">
+          <block wx:for="{{activityInfo.extraInfo.orderInfos}}" wx:for-item="orderInfo">
+            <block wx:if="{{orderInfo.status=='unpaid'}}">
+              <button bindtap="Pay" class="shareBtn" data-order_no="{{orderInfo.orderNo}}" data-price="{{orderInfo.totalPrice}}">现在支付余款</button>
+              <button bindtap="ToOrder" class="shareBtn" data-order_no="{{orderInfo.orderNo}}">查看余款订单</button>
+            </block>
+          </block>  
+        </block>
+    </block>
+    <block wx:if="{{activityInfo.sharePlayer}}">
+        <button class="shareBtn" openType="share" wx:if="{{activityInfo.status=='open' && activityInfo.extraInfo.shortage > 0}}">立即邀请好友一起拼</button>
+        <button bindtap="HelpGroup" class="shareBtn" wx:if="{{activityInfo.status=='open' && activityInfo.extraInfo.shortage > 0 && !activityInfo.sharePlayer.isMember}}">马上加入拼团</button>
+
+        <button bindtap="ToOrder" class="shareBtn" wx:if="{{activityInfo.extraInfo.mineOrderInfos && activityInfo.extraInfo.mineOrderInfos.length > 0}}" data-order_no="{{activityInfo.extraInfo.mineOrderInfos[0].orderNo}}">查看<block wx:if="{{activityInfo.extraInfo.mineOrderInfos[0].status=='unpaid'}}">未支付</block>订单</button>
+    </block>
+    <view class="clear"></view>
+</view>
+<block wx:if="{{fixedopen==1&&fixedarr.fixedbargain==1}}">
+    <import src="../../templates/fixedico.wxml"></import>
+    <template is="tempFixedIco" data="{{fixedarr:fixedarr}}"></template>
+</block>
+<import src="../../templates/groupbuy-list.wxml"></import>
+<view class="RecommendLayout">
+    <view class="RecommendTitle">推荐拼团</view>
+    <template is="tempGroupbuyList" data="{{activityList:activityList}}"></template>
+</view>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

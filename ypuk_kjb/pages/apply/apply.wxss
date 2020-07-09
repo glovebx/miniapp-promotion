@@ -1,0 +1,47 @@
+.FormLayout {
+    font-size: 28rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.form_con {
+    border-bottom: 1rpx solid #eee;
+}
+
+.FormLayout .goodinput {
+    height: 50rpx;
+    width: 75%;
+    padding: 30rpx 5%;
+    color: #777;
+}
+
+.FormLayout .goodtext {
+    width: 75%;
+    padding: 30rpx 5%;
+}
+
+.label {
+    margin: 30rpx 3% 20rpx 2%;
+    color: #777;
+    float: left;
+    border-right: 2rpx solid #eee;
+    padding: 0 3% 0 2%;
+}
+
+.ApplyTip {
+    background: #fff;
+    padding: 30rpx 5%;
+    width: 90%;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.ApplyTip .ApplyTipTitle {
+    padding: 20rpx 0 10rpx;
+    font-weight: 500;
+}
+
+.ApplyTip .ApplyTipText {
+    dispaly: block;
+    color: #585858;
+}

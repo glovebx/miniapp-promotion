@@ -1,0 +1,213 @@
+<!-- <import src="../../../utils/components/dialog/dialog.wxml"></import> -->
+<!-- <template is="dialog" data="{{...$wux.dialog}}"></template> -->
+<!-- <import src="../../../utils/components/actionsheet/actionsheet.wxml"></import> -->
+<!-- <template is="actionsheet" data="{{...$wux.actionSheet}}"></template> -->
+<!-- <import src="../../../utils/components/toptips/toptips.wxml"></import> -->
+<!-- <template is="toptips" data="{{...$wux.toptips}}"></template> -->
+
+<view class="page">
+    <form bindsubmit="userformSubmit" id="userform">
+        <view class="content3">
+            <view class="nxuanxiang1">商品类型</view>
+            <radio-group bindchange="radioChange1" class="radio-group" name="is_hexiao">
+                <label class="radio">
+                    <radio checked="{{goodsinfo.is_hexiao?0:1}}" color="#ff6600" value="0"></radio>快递配送
+
+          </label>
+                <label class="radio">
+                    <radio checked="{{goodsinfo.is_hexiao?1:0}}" color="#ff6600" value="1"></radio>到店消费
+          </label>
+            </radio-group>
+            <view class="beizhu">非快递配送类的商品，必须选择“到店消费”，使用核销功能。
+</view>
+        </view>
+        <view class="content1" wx:if="{{isxxlx}}">
+            <view class="cont2 bor_top">
+                <text class="nxuanxiang">核销门店</text>
+                <view bindtap="hexiaomendian" class="viewkuang"></view>
+                <view class="inputkuang">{{store}}</view>
+                <text class="danwei"></text>
+            </view>
+        </view>
+        <view class="content1 mar_top30">
+            <view class="cont1">
+                <text class="nxuanxiang weitiao">商品名称</text>
+                <textarea autoHeight="true" class="spjj" focus="{{focus=='gname'}}" name="gname" placeholder="请填写商品名称" value="{{goodsinfo.gname}}"></textarea>
+            </view>
+        </view>
+        <view class="content1 mar_top30">
+            <view class="formview">
+                <view class="name_input">
+                    <view class="imgview">
+                        <text class="spzt">商品主图</text>
+                        <view bindtap="chooseCoverImage" class="img_sty" data-url="{{goodsinfo.share_image}}" wx:if="{{shareimg.length>0}}">
+                            <image class="imgs" mode="aspectFill" src="{{shareimg}}"></image>
+                        </view>
+                        <view class="img_sty" wx:else>
+                            <view class="weui-uploader__input-box">
+                                <view bindtap="chooseCoverImage" class="weui-uploader__input"></view>
+                                <view class="bt_small">商品主图</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="imgview">
+                        <text class="spzt">商品图集</text>
+                        <view class="tuji_kuang">
+                            <view bindtap="previewImage" class="img_sty" data-url="{{item}}" wx:for="{{picimg}}">
+                                <image class="imgs" mode="aspectFill" src="{{item}}"></image>
+                                <image catchtap="removeImage" class="close_img" data-imgid="{{index}}" src="../../resource/images/close.png"></image>
+                            </view>
+                            <view class="img_sty" wx:if="{{picimg.length<9}}">
+                                <view class="weui-uploader__input-box">
+                                    <view bindtap="chooseImage" class="weui-uploader__input"></view>
+                                    <view class="bt_small">商品图集</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="content1 mar_top30" wx:if="{{!isxxlx}}">
+            <view class="cont2">
+                <text class="nxuanxiang">运费</text>
+                <view bindtap="chooseFreight" class="viewkuang"></view>
+                <view class="inputkuang left_30">{{freight}}</view>
+                <text class="danwei"></text>
+            </view>
+        </view>
+        <view class="content1 mar_top30">
+            <view class="cont1 {{ismendianxz||!zhezhao_show1||!zhezhao_show?'pad_bot':''}}">
+                <text class="nxuanxiang weitiao">商品简介</text>
+                <textarea autoHeight="true" class="spjj" focus="{{focus=='gdesc'}}" hidden="{{ismendianxz||!zhezhao_show1||!zhezhao_show}}" name="gdesc" placeholder="请填写商品简介" value="{{goodsinfo.gdesc}}"></textarea>
+            </view>
+        </view>
+        <view class="content1 mar_top30">
+            <view class="cont2">
+                <text class="nxuanxiang">单独购买价</text>
+                <input class="inputkuang" focus="{{focus=='oprice'}}" name="oprice" placeholder="请填写价格" type="digit" value="{{goodsinfo.oprice}}"></input>
+                <text class="danwei">元</text>
+            </view>
+            <view class="cont2">
+                <text class="nxuanxiang">市场价格</text>
+                <input class="inputkuang" focus="{{focus=='mprice'}}" name="mprice" placeholder="请填写价格" type="digit" value="{{goodsinfo.mprice}}"></input>
+                <text class="danwei">元</text>
+            </view>
+            <view class="cont2">
+                <text class="nxuanxiang">库存</text>
+                <input class="inputkuang" focus="{{focus=='gnum'}}" name="gnum" placeholder="请填写数量" type="digit" value="{{goodsinfo.gnum}}"></input>
+                <text class="danwei">件</text>
+            </view>
+        </view>
+        <view class="shangpgg_add" wx:for="{{shangpinInfo.shangpinguigexiang}}" wx:for-index="ggindex">
+            <image bindtap="removeguigexiang" class="delete" data-guigexiangid="{{ggindex}}" src="../../imgs/guanbi.png"></image>
+            <view class="sp_hang1">
+                <text>规格项</text>
+                <input bindblur="obtainGuigexiang" data-guigexiangid="{{ggindex}}" placeholder="请输入商品规格" type="text" value="{{item.guigexiang}}"></input>
+            </view>
+            <view class="shangpgg_xx" wx:for="{{item.shangpinguige}}">
+                <view class="sp_hang">
+                    <text>规格</text>
+                    <input bindblur="obtainGuige" data-guigeid="{{index}}" data-guigexiangid="{{ggindex}}" placeholder="请输入商品规格" type="text" value="{{item.guige}}"></input>
+                </view>
+                <view class="sp_hang">
+                    <text>价格</text>
+                    <input bindblur="obtainJiage" data-guigexiangid="{{ggindex}}" data-jiageid="{{index}}" placeholder="请输入商品价格" type="text" value="{{item.jiage}}"></input>
+                </view>
+                <view class="sp_hang">
+                    <text>库存</text>
+                    <input bindblur="obtainkucun" data-guigexiangid="{{ggindex}}" data-kucunid="{{index}}" placeholder="请输入商品库存" type="text" value="{{item.kucun}}"></input>
+                </view>
+                <image bindtap="removeguige" class="shanchu" data-ggindex="{{ggindex}}" id="{{index}}" src="../../imgs/delete.png"></image>
+            </view>
+            <button bindtap="addguige" class="addguige_x" data-guigexiangid="{{ggindex}}">添加规格</button>
+        </view>
+        <view class="content1 mar_top30">
+            <view class="cont2">
+                <text class="nxuanxiang">商品分类</text>
+                <view bindtap="changeCategory" class="viewkuang"></view>
+                <view class="inputkuang left_30">{{category}}</view>
+                <text class="danwei"></text>
+            </view>
+        </view>
+        <view class="content3 mar_top30">
+            <view class="shangpinzhuangtai">首页展示</view>
+            <radio-group class="radio-group" name="notshowindex">
+                <label class="radio">
+                    <radio checked="{{goodsinfo.notshowindex?0:1}}" color="#ff6600" value="0"></radio>是
+                </label>
+                <label class="radio left_20">
+                    <radio checked="{{goodsinfo.notshowindex?1:0}}" color="#ff6600" value="1"></radio>否
+                </label>
+            </radio-group>
+        </view>
+        <view class="content3 mar_top30">
+            <view class="shangpinzhuangtai">商品状态</view>
+            <radio-group bindchange="radioChange" class="radio-group" name="isshow">
+                <label class="radio">
+                    <radio checked="{{gid?goodsinfo.isshow:1}}" color="#ff6600" value="1"></radio>上架
+            </label>
+                <label class="radio">
+                    <radio checked="{{gid?!goodsinfo.isshow:0}}" color="#ff6600" value="0"></radio>放入仓库
+            </label>
+            </radio-group>
+        </view>
+        <view class="content4 mar_top30">
+            <view class="cont2  {{gaoji_show?'fengexian_bottom':''}}">
+                <view class="dianpu_name">高级功能</view>
+                <switch bindchange="switch4Change" class="switch_btn left_20" color="#ff6600" type="switch"></switch>
+            </view>
+            <view class="box_ji2 " hidden="{{!gaoji_show}}">
+                <view class="content3 ">
+                    <view class="shangpinzhuangtai">设置标签</view>
+                    <view class="biaoqian_box">
+                        <view bindtap="shangxin" class="{{discountshow.isnew?'active':''}}" data-active="{{discountshow.isnew?discountshow.isnew:0}}">上新</view>
+                        <input name="isnew" style="display:none;" value="{{discountshow.isnew}}"></input>
+                        <view bindtap="fengqiang" class="{{discountshow.ishot?'active':''}}" data-active="{{discountshow.ishot?discountshow.ishot:0}}">疯抢</view>
+                        <input name="ishot" style="display:none;" value="{{discountshow.ishot}}"></input>
+                        <view bindtap="tuijian" class="{{discountshow.isrecommand?'active':''}}" data-active="{{discountshow.isrecommand?discountshow.isrecommand:0}}">推荐</view>
+                        <input name="isrecommand" style="display:none;" value="{{discountshow.isrecommand}}"></input>
+                        <view bindtap="youhui" class="{{discountshow.isdiscount?'active':''}}" data-active="{{discountshow.isdiscount?discountshow.isdiscount:0}}">优惠</view>
+                        <input name="isdiscount" style="display:none;" value="{{discountshow.isdiscount}}"></input>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <button class="tijiao_btn " disabled="{{buttondisabled}}" formType="submit">提交</button>
+    </form>
+</view>
+<view class="mene_zhezhao" hidden="{{zhezhao_show}}">
+    <view class="guanli_menu">
+        <view bindtap="setFreight" class="guanli_menu_cild">
+            <button data-id="{{index}}" data-type="end" formType="submit" wx:for="{{freights}}">{{item.dispatchname}}</button>
+        </view>
+        <button bindtap="goAddFreightTemplate" class="guanli_menu_b10">
+          新增运费模板
+      </button>
+        <button catchtap="cancelAddFreightTemplate">取消</button>
+    </view>
+</view>
+<view class="mene_zhezhao" hidden="{{zhezhao_show1}}">
+    <view class="guanli_menu">
+        <view bindtap="setCategory" class="guanli_menu_cild">
+            <button data-id="{{index}}" data-type="end" disabled="{{buttondisabled}}" wx:for="{{categorys}}">{{item.name}}</button>
+        </view>
+        <button bindtap="goAddGoodsClass" class="guanli_menu_b10">
+          添加商品分类
+      </button>
+        <button catchtap="cancelAddGoodsClass">取消</button>
+    </view>
+</view>
+<view class="mene_zhezhao" hidden="{{!ismendianxz}}">
+    <view class="guanli_menu">
+        <view bindtap="setStore" class="guanli_menu_cild">
+            <button data-id="{{index}}" data-type="end" disabled="{{buttondisabled}}" wx:for="{{stores}}">{{item.storename}}</button>
+        </view>
+        <button bindtap="gostoreAdd" class="guanli_menu_b10">
+          添加门店
+      </button>
+        <button catchtap="quxiao2">取消</button>
+    </view>
+</view>
+<!-- <import src="/pages/common/kefu.wxml"></import> -->
+<!-- <template is="kefu" data></template> -->

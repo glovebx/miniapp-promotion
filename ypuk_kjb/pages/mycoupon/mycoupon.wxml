@@ -1,0 +1,52 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="couponList">
+    <view class="couponItem" wx:for="{{couponList}}" wx:key="id" wx:for-item="itemName">
+      <view class="couponAmountInfo">
+        <view class="couponAmountIcon">
+        </view>
+        <view class="couponAmount">
+          <text>￥</text>{{itemName.money}}
+        </view>
+      </view>
+      <view class="couponDetail">
+          <view class="couponTitle">{{itemName.name}}</view>
+          <!-- <view class="couponNo">优惠券码：{{itemName.couponNo}}</view> -->
+          <view class="couponInfo">
+              <view class="infoItem">满 {{itemName.moneyThreshold}} 元使用</view>
+              <view class="infoItem"><text>有效期至：</text>{{itemName.dateEnd}}</view>
+              <view class="infoItem warning" wx:if="{{itemName.bindLocked}}">请绑定客服微信号激活</view>
+          </view>
+          <view class="clear"></view>
+      </view>
+
+      <block wx:if="{{!itemName.bindLocked && itemName.activityInfo && itemName.activityInfo.length > 0}}">
+        <view bindtap='goActivity' data-category="{{itemName.activityInfo[0].category}}" data-id="{{itemName.activityInfo[0].id}}" class="couponActivity" >
+            <image class="activityPic" mode="aspectFill" src="{{itemName.activityInfo[0].coverPic}}"></image>
+            <view class="activityTitle">{{itemName.activityInfo[0].name}}</view>
+            <view class="activitySaleCount"><text>已下单：</text>{{itemName.activityInfo[0].saleCount}}</view>
+            <!-- <view class="LeftPrice">
+                <view class="LowPrice">
+                    <text class="YuanIcon">￥</text>{{activityInfo.unitPrice.unitPrice}}</view>
+                <view class="OldPrice">原价￥{{itemName.activityInfo[0].originalPrice}}</view>
+            </view>           -->
+            <view class="clear"></view>
+        </view>
+      </block>
+
+      <block wx:if="{{itemName.bindLocked && itemName.bindInfo}}">
+        <view bindtap='goBind' data-url="{{itemName.bindInfo.customerServiceUrl}}" data-invite-code="{{itemName.bindInfo.inviteCode}}" class="couponActivity" >
+            <image class="activityPic" mode="aspectFill" src="{{itemName.bindInfo.customerServiceUrl}}"></image>
+            <view class="activityTitle">保存此图片到相册，打开微信扫一扫，点右上角按钮从相册选择保存的二维码图片，加好友时备注邀请码</view>
+            <view class="activitySaleCount">
+<button type='primary' class='openSetting' open-type="openSetting"
+bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>            
+            </view>
+            <view class="clear"></view>
+        </view>
+      </block>
+
+      <view class="clear"></view>
+
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>

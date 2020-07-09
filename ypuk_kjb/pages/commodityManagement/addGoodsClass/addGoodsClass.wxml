@@ -1,0 +1,25 @@
+<!-- <import src="../../../utils/components/toptips/toptips.wxml"></import> -->
+<!-- <template is="toptips" data="{{...$wux.toptips}}"></template> -->
+<form bindsubmit="userformSubmit" id="userform">
+    <view class="hang_par">
+        <view class="hang">
+            <text>分类名称</text>
+            <input name="name" placeholder="请填写商品分类名称"></input>
+        </view>
+        <view class="hang">
+            <text>分类图片</text>
+            <view class="tuji_kuang">
+                <view class="img_sty1" data-url="{{feileiimg}}" wx:if="{{picimg.length!=0}}">
+                    <image bindtap="chooseImage" class="imgs" mode="aspectFill" src="{{picimg[0]}}"></image>
+                </view>
+                <view class="img_sty" wx:else>
+                    <view class="weui-uploader__input-box">
+                        <view bindtap="chooseImage" class="weui-uploader__input"></view>
+                        <view class="bt_small">分类图片</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button class="baocun_btn " disabled="{{buttondisabled}}" formType="submit">提交</button>
+</form>

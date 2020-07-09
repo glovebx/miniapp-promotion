@@ -1,0 +1,27 @@
+@import "../../resource/wxParse/wxParse.wxss";
+
+page {
+    background: #fff;
+}
+
+.noticeLayout {
+    padding: 20rpx;
+}
+
+.noticeTitle {
+    text-align: center;
+    margin: 30rpx 0 20rpx;
+}
+
+.noticeTime {
+    font-size: 14px;
+    color: #777;
+    padding-bottom: 30rpx;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.noticeContent {
+    margin-top: 30rpx;
+    font-size: 14px;
+}

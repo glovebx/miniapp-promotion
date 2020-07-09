@@ -1,0 +1,71 @@
+<view class="ActivityInfo">
+    <navigator url="../../pages/groupbuy_detail/groupbuy_detail?activityid={{orderInfo.activityInfo.id}}&unit={{orderInfo.activityInfo.unitPrice.unit}}">
+        <image class="ActvityPic" mode="aspectFill" src="{{orderInfo.activityInfo.coverPic}}"></image>
+        <view class="ActivityRight">
+            <view class="ActivityTitle">{{orderInfo.activityInfo.name}}</view>
+            <view class="ActivityStock">剩余库存：{{orderInfo.activityInfo.quantity}}</view>
+        </view>
+        <view class="clear"></view>
+    </navigator>
+</view>
+<view class="qrLayout" wx:if="{{orderInfo.status=='unconfirmed'&&orderInfo.activityInfo.goodsType=='service'}}">
+    <image class="qrImg" src="{{orderInfo.qr}}"></image>
+    <view class="qrText">到店后请出示此码</view>
+</view>
+<view class="OrderInfo">
+    <view class="infoItem">订单编号：{{orderInfo.orderNo}}</view>
+    <view class="infoItem" wx:if="{{orderInfo.activityInfo.goodsType=='service'&&orderInfo.activityInfo.timeGoodsExpire}}">有效期至：{{orderInfo.activityInfo.timeGoodsExpire}}</view>
+    <view class="infoItem" wx:if="{{orderInfo.propertyStr}}">规格：{{orderInfo.propertyStr}}</view>
+    <view class="infoItem">联系人姓名：{{orderInfo.linkman}}</view>
+    <view class="infoItem">联系人电话：{{orderInfo.mobile}}</view>
+    <view class="infoItem">联系人地址：{{orderInfo.address}}</view>
+    <view class="infoItem" wx:if="{{orderInfo.remark}}">备注：{{orderInfo.remark}}</view>
+    <view class="infoItem">付款方式：<block wx:if="{{orderInfo.activityInfo.paymentType=='online'}}">在线支付</block>
+        <block wx:if="{{orderInfo.activityInfo.paymentType=='offline'}}">在线预付款，线下支付尾款</block>
+    </view>
+    <view class="infoItem">原价：￥{{orderInfo.activityInfo.originalPrice}}</view>
+    <block wx:if="{{orderInfo.type=='buy'}}">
+        <view class="infoItem">单独购买价：￥{{orderInfo.activityInfo.buyPrice}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.activityInfo.paymentType=='online'}}">在线支付：￥{{orderInfo.activityInfo.buyPrice}}</view>
+        <block wx:if="{{orderInfo.activityInfo.paymentType=='offline'}}">
+            <view class="infoItem">在线预付款：￥{{orderInfo.activityInfo.buyPrice}}</view>
+            <!-- <view class="infoItem">线下尾款：￥{{orderInfo.activityInfo.buyPrice}}</view> -->
+        </block>
+    </block>
+    <block wx:if="{{orderInfo.type=='group_buy'}}">
+        <view class="infoItem">拼团价：￥{{orderInfo.activityInfo.unitPrice && orderInfo.activityInfo.unitPrice.unitPrice}}</view>
+        <view class="infoItem" wx:if="{{orderInfo.activityInfo.paymentType=='online'}}">在线支付：￥{{orderInfo.totalPrice}}</view>
+        <block wx:if="{{orderInfo.activityInfo.paymentType=='offline'}}">
+            <view class="infoItem">在线预付款：￥{{orderInfo.totalPrice}}</view>
+            <!-- <view class="infoItem">线下尾款：￥{{orderInfo.activityInfo.ofl_groupprice}}</view> -->
+        </block>
+    </block>
+    <view class="infoItem" wx:if="{{orderInfo.freight>0}}">运费：￥{{orderInfo.freight}}</view>
+    <view class="infoItem">已付款：￥{{orderInfo.status == 'unpaid' ? 0.00 : orderInfo.totalPrice}}</view>
+    <view class="infoItem">订单总价：￥{{orderInfo.totalPrice}}</view>
+    <view class="infoItem">活动状态：<block wx:if="{{orderInfo.activityInfo.status=='open'}}">活动进行中</block>
+        <block wx:if="{{orderInfo.activityInfo.status=='close'}}">活动已结束</block>
+    </view>
+    <view class="infoItem">订单状态：<block wx:if="{{orderInfo.status=='unpaid'&&orderInfo.activityInfo.status=='open'&&orderInfo.activityInfo.quantity>0}}">创建成功，等待付款</block>
+        <block wx:if="{{orderInfo.status=='pending'}}">等待发货</block>
+        <block wx:if="{{orderInfo.status=='unconfirmed'&&orderInfo.activityInfo.goodsType!='service'}}">已发货</block>
+        <block wx:if="{{orderInfo.status=='unconfirmed'&&orderInfo.activityInfo.goodsType=='service'}}">等待到店</block>
+        <block wx:if="{{orderInfo.status=='completed'&&orderInfo.activityInfo.goodsType!='service'}}">已完成</block>
+        <block wx:if="{{orderInfo.status=='completed'&&orderInfo.activityInfo.goodsType=='service'}}">已核销</block>
+        <block wx:if="{{orderInfo.status=='unpaid'&&orderInfo.activityInfo.status=='close'&&orderInfo.activityInfo.quantity==0}}">已取消（库存为0或活动结束时，未支付的订单将自动取消）</block>
+    </view>
+    <block wx:if="{{orderInfo.expressNo}}">
+        <view class="infoItem">快递公司：{{orderInfo.expressName}}</view>
+        <view class="infoItem">快递单号：{{orderInfo.expressNo}}</view>
+    </block>
+</view>
+<view wx:if="{{orderInfo.status=='unpaid'&&orderInfo.activityInfo.quantity>0&&orderInfo.activityInfo.status=='open'}}">
+    <view class="payTips">1、订单创建成功，请尽快支付（库存为0或活动结束时，未支付的订单将自动取消）。</view>
+    <view class="payTips">2、订单有问题，请添加客服微信{{orderInfo.customerServiceWechatId}}咨询。</view>
+    <button bindtap="pay" class="green_btn" formType="submit" plain="true" size="default" type="default">支付</button>
+</view>
+<view wx:if="{{orderInfo.status=='unconfirmed'&&orderInfo.activityInfo.goodsType!='service'}}">
+    <button bindtap="ConfirmOrder" class="green_btn" formType="submit" plain="true" size="default" type="default">确认收货</button>
+</view>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->

@@ -1,0 +1,100 @@
+.ClerkInfo {
+    padding: 30rpx;
+    background: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.ClerkTitle {
+    border-left: 5px solid #ee4f4f;
+    padding-left: 20rpx;
+    color: #ee4f4f;
+    margin-bottom: 20rpx;
+}
+
+.ClerkItem {
+    margin-bottom: 10rpx;
+}
+
+.ClerkLabel {
+    margin-right: 10rpx;
+    margin-left: 30rpx;
+}
+
+.ClerkText {
+    color: #787878;
+}
+
+.FormLayout {
+    font-size: 28rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+
+.form_con {
+    border-bottom: 1rpx solid #eee;
+    position: relative;
+}
+
+.FormLayout .goodinput {
+    height: 50rpx;
+    width: 75%;
+    padding: 30rpx 5%;
+    color: #777;
+}
+
+.scanIcon {
+    width: 60rpx;
+    height: 60rpx;
+    position: absolute;
+    right: 40rpx;
+    top: 26rpx;
+}
+
+.ActivityInfo {
+    padding: 20rpx 5%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.ActivityInfo .ActvityPic {
+    width: 140rpx;
+    height: 140rpx;
+    float: left;
+}
+
+.ActivityInfo .ActivityRight {
+    float: left;
+    font-size: 14px;
+    width: 74%;
+    margin-left: 30rpx;
+}
+
+.ActivityInfo .ActivityStock {
+    margin-top: 10rpx;
+}
+
+.OrderInfo {
+    font-size: 26rpx;
+    background: #fff;
+    margin-bottom: 20rpx;
+    padding: 20rpx 0;
+}
+
+.infoItem {
+    padding: 8rpx 5%;
+}
+
+.OrderType {
+    padding: 30rpx 30rpx 20rpx;
+    font-size: 14px;
+    background: #fff;
+}
+
+.OrderType .OrderTypeText {
+    border: 1px solid #ee4f4f;
+    display: inline-block;
+    color: #ee4f4f;
+    padding: 10rpx 20rpx;
+    border-radius: 10rpx;
+}

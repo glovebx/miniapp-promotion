@@ -1,0 +1,61 @@
+.groupList {
+}
+
+.groupList .groupItem {
+    padding: 20rpx;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20rpx;
+}
+
+.groupItem .groupActivity {
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 20rpx;
+}
+
+.groupActivity .groupPic {
+    width: 130rpx;
+    height: 130rpx;
+    float: left;
+}
+
+.groupActivity .groupTitle {
+    float: left;
+    width: 75%;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.groupInfo {
+    border-bottom: 1px dashed #eee;
+}
+
+.infoItem {
+    float: left;
+    text-align: center;
+    width: 33%;
+    margin: 20rpx 0;
+}
+
+.infoItem:nth-child(2) {
+    border-left: 1px dashed #eee;
+    border-right: 1px dashed #eee;
+}
+
+.infoItem .infoNum {
+    color: #dbb243;
+}
+
+.infoItem .infoText {
+    font-size: 14px;
+}
+
+.groupStatus {
+    font-size: 14px;
+    padding: 20rpx 20rpx 0;
+    color: #dbb243;
+}
+
+.yuan {
+    font-size: 13px;
+}

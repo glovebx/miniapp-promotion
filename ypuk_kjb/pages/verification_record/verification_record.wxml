@@ -1,0 +1,31 @@
+<import src="../../templates/nomore.wxml"></import>
+<view class="orderList">
+    <view class="orderItem" wx:for="{{orderList}}" wx:for-item="itemName">
+        <navigator url="../../pages/detail/detail?activityid={{itemName.order.aid}}">
+            <view class="orderNo">订单号：{{itemName.order_no}}</view>
+            <view class="orderNo" wx:if="{{itemName.order.type==1&&itemName.order.oporder==0}}">订单类型：砍价订单</view>
+            <view class="orderNo" wx:if="{{itemName.order.type==1&&itemName.order.oporder==1}}">订单类型：砍价直接买订单</view>
+            <view class="orderNo" wx:if="{{itemName.order.type==2}}">订单类型：抢购订单</view>
+            <view class="orderNo" wx:if="{{itemName.order.type==3&&itemName.order.oporder==0}}">订单类型：拼团订单</view>
+            <view class="orderNo" wx:if="{{itemName.order.type==3&&itemName.order.oporder==1}}">订单类型：拼团单买订单</view>
+            <view class="orderInfo">
+                <view class="infoItem">核销时间：{{itemName.createtime}}</view>
+                <view class="infoItem" wx:if="{{itemName.activity.type==1&&itemName.activity.validity!=0}}">有效期至：{{itemName.activity.validity}}</view>
+                <view class="infoItem">支付方式：<block wx:if="{{itemName.activity.pay_type==1}}">在线支付</block>
+                    <block wx:if="{{itemName.activity.pay_type==2}}">到店付款</block>
+                </view>
+                <view class="infoItem">总价：￥{{itemName.order.total_price}}</view>
+                <view class="clear"></view>
+            </view>
+            <view class="orderActivity">
+                <image class="orderPic" mode="aspectFill" src="{{itemName.activity.pic}}"></image>
+                <view class="orderTitle">{{itemName.activity.title}}</view>
+                <view class="clear"></view>
+            </view>
+            <view class="clear"></view>
+        </navigator>
+    </view>
+</view>
+<template is="tempNoMore" data="{{noMoreHidden:noMoreHidden}}"></template>
+<!-- <import src="../../templates/login-model.wxml"></import> -->
+<!-- <template is="tempLogin" data="{{loginModelHidden:loginModelHidden}}"></template> -->
