@@ -19,6 +19,15 @@
 git clone https://github.com/glovebx/miniapp-promotion.git
 ``` 
  
+### 根目录下创建config.js文件，写入如下内容，URI是你自己的服务端Api地址
+```
+module.exports = {
+  URI: "http://192.168.3.8:8069/218aef23972a11e883c1542696dac175",
+  version: "1.0.0",
+  note: '你的小程序'
+}
+```
+
 ## 联系
 
 提交PR或者Issue
