@@ -1,12 +1,4 @@
-# 团购、砍价、抢购三合一微信小程序，服务器端为ODOO V10
-
-<p align="center">
-    <a href="art/launcher.png">
-        <img src="art/launcher.png" width="240" height="240"/>
-    </a>
-</p>
-
-## 团购、砍价、抢购三合一的微信小程序，服务器端为ODOO V10，易于扩展，二次开发效率高
+## 团购、砍价、抢购三合一的微信小程序，服务器端为ODOO V10，易于扩展，极其方便的二次开发效率
 
 ## 特性
 :white_check_mark:  开发语言: 微信小程序原生 :scream: :heart: <br/>
@@ -17,9 +9,9 @@
 
 ## 截屏
 
-| Login     | 
+| 截屏1     | 
 | :-------------: | 
-| ![Login](art/auth_activity.png) | 
+| ![Main](http://gallery3.moco.co/miniapp-promotion-snapshot1.jpeg) | 
 
 ## 编译
 ### 开发环境 微信开发者工具
