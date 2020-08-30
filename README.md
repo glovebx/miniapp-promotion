@@ -9,9 +9,9 @@
 
 ## 截屏
 
-| 截屏1     | 
-| :-------------: | 
-| ![Main](http://gallery3.moco.co/miniapp-promotion-snapshot1.jpeg) | 
+| Main     | Detail     | 
+| :-------------: | :-------------: | 
+| ![Main](http://gallery3.moco.co/miniapp-promotion-snapshot1.jpeg) | ![Main](http://gallery3.moco.co/miniapp-promotion-snapshot2.jpeg) | 
 
 ## 编译
 ### 开发环境 微信开发者工具
